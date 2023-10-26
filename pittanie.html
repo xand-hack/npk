@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Меню на неделю</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Меню на неделю:</h1>
+
+    <label for="personCount">Количество персон: </label>
+    <select id="personCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+
+    <label for="mealCount">Приемов пищи в день: </label>
+    <select id="mealCount">
+      <option value="3">3</option>
+      <option value="5">4</option>
+    </select>
+
+    <button onclick="generateMenus()">Сгенерировать меню</button>
+
+    <div id="menus"></div>
+
+    <script>
+      var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+
+      // Массивы с вариантами блюд для каждого приема пищи
+      var breakfastOptions = ["Омлет", "Каша", "Тосты", "Фрукты"];
+      var lunchOptions = ["Салат", "Паста", "Сэндвич", "Суп"];
+      var dinnerOptions = ["Рыба с овощами", "Курица с картофелем", "Пицца", "Суши"];
+      var snackOptions = ["Фрукты", "Орехи", "Йогурт", "Зерновые батончики"];
+
+      function getRandomMeal(menuArray, usedMeals) {
+        var availableMeals = menuArray.filter(function (meal) {
+          return !usedMeals[meal] || usedMeals[meal] < 2;
+        });
+
+        if (availableMeals.length === 0) {
+          return "Исчерпаны варианты бб васел";
+        }
+
+        var randomIndex = Math.floor(Math.random() * availableMeals.length);
+        var selectedMeal = availableMeals[randomIndex];
+
+        // Увеличиваем счетчик использования
+        usedMeals[selectedMeal] = (usedMeals[selectedMeal] || 0) + 1;
+
+        return selectedMeal;
+      }
+
+      function generateMenus() {
+        var personCount = document.getElementById("personCount").value;
+        var mealCount = parseInt(document.getElementById("mealCount").value);
+        var menusContainer = document.getElementById("menus");
+        menusContainer.innerHTML = ""; // Очищаем контейнер перед генерацией
+
+        var includeSnack = mealCount === 5;
+
+        for (var person = 1; person <= personCount; person++) {
+          var personMenu = document.createElement("table");
+          var menuHeader = "<tr><th>День недели</th><th>Завтрак</th><th>Обед</th>";
+
+          if (includeSnack) {
+            menuHeader += "<th>Полдник</th>";
+          }
+
+          menuHeader += "<th>Ужин</th></tr>";
+          personMenu.innerHTML = menuHeader;
+
+          var usedBreakfasts = {};
+          var usedLunches = {};
+          var usedDinners = {};
+          var usedSnacks = {};
+
+          for (var i = 0; i < daysOfWeek.length; i++) {
+            var day = daysOfWeek[i];
+            var row = personMenu.insertRow();
+            var cell1 = row.insertCell(0);
+            cell1.textContent = day;
+            var cell2 = row.insertCell(1);
+            cell2.textContent = getRandomMeal(breakfastOptions, usedBreakfasts);
+            var cell3 = row.insertCell(2);
+            cell3.textContent = getRandomMeal(lunchOptions, usedLunches);
+
+            if (includeSnack) {
+              var cell4 = row.insertCell(3);
+              cell4.textContent = getRandomMeal(snackOptions, usedSnacks);
+              var cell5 = row.insertCell(4);
+              cell5.textContent = getRandomMeal(dinnerOptions, usedDinners);
+            } else {
+              var cell4 = row.insertCell(3);
+              cell4.textContent = getRandomMeal(dinnerOptions, usedDinners);
+            }
+          }
+
+          menusContainer.appendChild(personMenu);
+        }
+      }
+    </script>
+  </body>
+</html>
