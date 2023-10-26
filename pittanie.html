@@ -16,32 +16,39 @@
         padding: 10px;
         text-align: left;
       }
+      
+      label,th,td,h1{
+        font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+      }
+
     </style>
   </head>
   <body>
-    <h1>Меню на неделю:</h1>
+    <div class="top">
+        <h1>Меню на неделю:</h1>
+        <label for="personCount">Количество персон: </label>
+        <select id="personCount">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+    
+        <label for="mealCount">Приемов пищи в день: </label>
+        <select id="mealCount">
+          <option value="3">3</option>
+          <option value="5">4</option>
+        </select>
+    
+        <button onclick="generateMenus()">Сгенерировать меню</button>
+    </div>
 
-    <label for="personCount">Количество персон: </label>
-    <select id="personCount">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
-
-    <label for="mealCount">Приемов пищи в день: </label>
-    <select id="mealCount">
-      <option value="3">3</option>
-      <option value="5">4</option>
-    </select>
-
-    <button onclick="generateMenus()">Сгенерировать меню</button>
 
     <div id="menus"></div>
 
