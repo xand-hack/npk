@@ -16,6 +16,10 @@
         padding: 10px;
         text-align: left;
       }
+      label,th,td,h1{
+        font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+      }
+
     </style>
   </head>
   <body>
@@ -40,6 +44,12 @@
       <option value="3">3</option>
       <option value="5">4</option>
     </select>
+    
+    <label for="choseMenu">Выберите меню</label>
+    <select id="choseMenu">
+      <option value="Diet">Деетическое</option>
+      <option value="Regular">Обычное</option>
+    </select>
 
     <button onclick="generateMenus()">Сгенерировать меню</button>
 
@@ -47,11 +57,31 @@
 
     <script>
       var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+      //Массивы с вариантами блюд для каждого приема пищи(Диетического)
+      var breakfastdietOptions = [
+      {name:"Каша с фруктами/сухофруктами/орехами/медом", composition:"1)Овсянка – 3 ст. л.2)<br> Молоко – 100 мл<br>3)Мед – 1 ч. л.<br>4)Орехи – 20 г<br>5(Фрукты и ягоды – по вкусу"},
+      {name:"Творожные сырники", composition:"1)Творог 5% – 400 г 2)Яичный белок – 4 шт.3)Подсластитель по вкусу"},
+      {name:"Ленивая овсянка в банке",composition:"1)Овсяные хлопья (не быстрого приготовления) – 100 г, 2)Натуральный йогурт или густой кефир – 60 мл, 3)Молоко  – 60 мл,4)Банан – 1 шт, 5)Фрукты, ягоды, сухофрукты по вкусу, 6)Мед по вкусу"},
+      {name:"Овсяноблин с различными начинками", composition:"1)Овсяные хлопья – 3 ст.л. 2)Молоко – 60 млЯйцо – 1 шт. 3)Начинка по вкусу"}
+      ];
 
-      // Массивы с вариантами блюд для каждого приема пищи
+      var lunchdietOptions=[
+        {name:"Салат с тунцом и фасолью по-тоскански", composition:"Консервированный тунец в собственном соку, Фасоль каннеллини, Помидоры черри, Оливковое масло extra virgin,Зеленый лук с луковицей,Соль, Лимонный сок, Свежемолотый черный перец "},
+        {name:"Паровой куриный рулет с мандаринами и черносливом", composition:"Куриное филе,Мандарины,Толченые грецкие орехи,Чернослив без косточек,Соль, Специи, Молотый черный перец"},
+        {name:"Уха из сибаса", composition:"Сибас, Цукини, Морковь, Лук-порей,Сельдерей, Репчатый лук,Корень сельдерея,Кудрявая петрушка, Укроп, Соль   "},
+        {name:"Томатный суп из морепродуктов", composition:"Коктейль из морепродуктов, Репчатый лук,Чеснок, Сладкий перец, Помидоры, Томатный сок, Шафран, Сушеный базилик, Прованские травы, Лимонный сок, Куриное яйцо"},
+      ]
+
+      var dinnerdietOptions = [
+        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+        { name: "Курица с картофелем", composition: "Куринное варенная , картофель варенный " },
+        { name: "Спагетти с чесноком и маслом", composition: "" },
+        { name: "Дорада в духовке с лимоном и базиликом", composition:"Спагетти, Перец чили, Петрушка, Оливковое масло, Лимон, Соль, Молотый черный перец" },
+      ];
+      // Массивы с вариантами блюд для каждого приема пищи(обычного)
       var breakfastOptions = [
         { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
-        { name: "Каша", composition: "Гречка, вода, соль" },
+        { name: "Гречневая каша", composition: "Гречка, вода, соль" },
         { name: "Тосты", composition: "Хлеб, масло" },
         { name: "Фрукты", composition: "Яблоко, банан, апельсин" },
       ];
@@ -100,14 +130,19 @@
         var personCount = document.getElementById("personCount").value;
         var mealCount = parseInt(document.getElementById("mealCount").value);
         var menusContainer = document.getElementById("menus");
+        var choseMenu = document.getElementById("choseMenu").value;
         menusContainer.innerHTML = ""; // Очищаем контейнер перед генерацией
-
+        
+      
         var includeSnack = mealCount === 5;
-
+        
+        
+        
+        if(choseMenu =="Regular"){
         for (var person = 1; person <= personCount; person++) {
           var personMenu = document.createElement("table");
           var menuHeader = "<tr><th>День недели</th><th>Завтрак</th><th>Обед</th>";
-
+            
           if (includeSnack) {
             menuHeader += "<th>Полдник</th>";
           }
@@ -149,6 +184,54 @@
           menusContainer.appendChild(personMenu);
         }
       }
+      if(choseMenu =="Diet"){
+        for (var person = 1; person <= personCount; person++) {
+          var personMenu = document.createElement("table");
+          var menuHeader = "<tr><th>День недели</th><th>Завтрак</th><th>Обед</th>";
+            
+          if (includeSnack) {
+            menuHeader += "<th>Полдник</th>";
+          }
+
+          menuHeader += "<th>Ужин</th></tr>";
+          personMenu.innerHTML = menuHeader;
+
+          var usedBreakfasts = {};
+          var usedLunches = {};
+          var usedDinners = {};
+          var usedSnacks = {};
+
+          for (var i = 0; i < daysOfWeek.length; i++) {
+            var day = daysOfWeek[i];
+            var row = personMenu.insertRow();
+            var cell1 = row.insertCell(0);
+            cell1.textContent = day;
+            var cell2 = row.insertCell(1);
+            var breakfast = getRandomMeal(breakfastdietOptions, usedBreakfasts);
+            cell2.innerHTML = breakfast.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + breakfast.composition + '\')">Показать состав</a>';
+            var cell3 = row.insertCell(2);
+            var lunch = getRandomMeal(lunchdietOptions, usedLunches);
+            cell3.innerHTML = lunch.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + lunch.composition + '\')">Показать состав</a>';
+
+            if (includeSnack) {
+              var cell4 = row.insertCell(3);
+              var snack = getRandomMeal(snackOptions, usedSnacks);
+              cell4.innerHTML = snack.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + snack.composition + '\')">Показать состав</a>';
+              var cell5 = row.insertCell(4);
+              var dinner = getRandomMeal(dinnerdietOptions, usedDinners);
+              cell5.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
+            } else {
+              var cell4 = row.insertCell(3);
+              var dinner = getRandomMeal(dinnerdietOptions, usedDinners);
+              cell4.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
+            }
+          }
+
+          menusContainer.appendChild(personMenu);
+    }
+      }
+    }
+
     </script>
   </body>
 </html>
