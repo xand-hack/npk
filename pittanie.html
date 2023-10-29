@@ -16,39 +16,32 @@
         padding: 10px;
         text-align: left;
       }
-      
-      label,th,td,h1{
-        font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-      }
-
     </style>
   </head>
   <body>
-    <div class="top">
-        <h1>Меню на неделю:</h1>
-        <label for="personCount">Количество персон: </label>
-        <select id="personCount">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-    
-        <label for="mealCount">Приемов пищи в день: </label>
-        <select id="mealCount">
-          <option value="3">3</option>
-          <option value="5">4</option>
-        </select>
-    
-        <button onclick="generateMenus()">Сгенерировать меню</button>
-    </div>
+    <h1>Меню на неделю:</h1>
 
+    <label for="personCount">Количество персон: </label>
+    <select id="personCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+
+    <label for="mealCount">Приемов пищи в день: </label>
+    <select id="mealCount">
+      <option value="3">3</option>
+      <option value="5">4</option>
+    </select>
+
+    <button onclick="generateMenus()">Сгенерировать меню</button>
 
     <div id="menus"></div>
 
@@ -56,27 +49,51 @@
       var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
 
       // Массивы с вариантами блюд для каждого приема пищи
-      var breakfastOptions = ["Омлет", "Каша", "Тосты", "Фрукты"];
-      var lunchOptions = ["Салат", "Паста", "Сэндвич", "Суп"];
-      var dinnerOptions = ["Рыба с овощами", "Курица с картофелем", "Пицца", "Суши"];
-      var snackOptions = ["Фрукты", "Орехи", "Йогурт", "Зерновые батончики"];
+      var breakfastOptions = [
+        { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
+        { name: "Каша", composition: "Гречка, вода, соль" },
+        { name: "Тосты", composition: "Хлеб, масло" },
+        { name: "Фрукты", composition: "Яблоко, банан, апельсин" },
+      ];
+      var lunchOptions = [
+        { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" },
+        { name: "Паста", composition: "Макароны, томатный соус, сыр" },
+        { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" },
+        { name: "Суп", composition: "Куриный бульон, лапша, овощи" },
+      ];
+      var dinnerOptions = [
+        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+        { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" },
+        { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса" },
+        { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус" },
+      ];
+      var snackOptions = [
+        { name: "Фрукты", composition: "Яблоко, банан, груша" },
+        { name: "Орехи", composition: "Грецкие орехи, миндаль" },
+        { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
+        { name: "Зерновые батончики", composition: "Злаки, мед, орехи" },
+      ];
 
       function getRandomMeal(menuArray, usedMeals) {
         var availableMeals = menuArray.filter(function (meal) {
-          return !usedMeals[meal] || usedMeals[meal] < 2;
+          return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
         });
 
         if (availableMeals.length === 0) {
-          return "Исчерпаны варианты бб васел";
+          return "Исчерпаны варианты";
         }
 
         var randomIndex = Math.floor(Math.random() * availableMeals.length);
         var selectedMeal = availableMeals[randomIndex];
 
         // Увеличиваем счетчик использования
-        usedMeals[selectedMeal] = (usedMeals[selectedMeal] || 0) + 1;
+        usedMeals[selectedMeal.name] = (usedMeals[selectedMeal.name] || 0) + 1;
 
         return selectedMeal;
+      }
+
+      function showComposition(composition) {
+        alert("Состав: " + composition);
       }
 
       function generateMenus() {
@@ -109,18 +126,23 @@
             var cell1 = row.insertCell(0);
             cell1.textContent = day;
             var cell2 = row.insertCell(1);
-            cell2.textContent = getRandomMeal(breakfastOptions, usedBreakfasts);
+            var breakfast = getRandomMeal(breakfastOptions, usedBreakfasts);
+            cell2.innerHTML = breakfast.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + breakfast.composition + '\')">Показать состав</a>';
             var cell3 = row.insertCell(2);
-            cell3.textContent = getRandomMeal(lunchOptions, usedLunches);
+            var lunch = getRandomMeal(lunchOptions, usedLunches);
+            cell3.innerHTML = lunch.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + lunch.composition + '\')">Показать состав</a>';
 
             if (includeSnack) {
               var cell4 = row.insertCell(3);
-              cell4.textContent = getRandomMeal(snackOptions, usedSnacks);
+              var snack = getRandomMeal(snackOptions, usedSnacks);
+              cell4.innerHTML = snack.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + snack.composition + '\')">Показать состав</a>';
               var cell5 = row.insertCell(4);
-              cell5.textContent = getRandomMeal(dinnerOptions, usedDinners);
+              var dinner = getRandomMeal(dinnerOptions, usedDinners);
+              cell5.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
             } else {
               var cell4 = row.insertCell(3);
-              cell4.textContent = getRandomMeal(dinnerOptions, usedDinners);
+              var dinner = getRandomMeal(dinnerOptions, usedDinners);
+              cell4.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
             }
           }
 
