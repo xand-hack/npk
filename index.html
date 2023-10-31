@@ -104,6 +104,25 @@
         { name: "Зерновые батончики", composition: "Злаки, мед, орехи" },
       ];
 
+function calculateBMI(weight, height) {
+    // Рассчитываем ИМТ по формуле: ИМТ = вес (кг) / (рост (м) * рост (м))
+    const bmi = weight / (height * height);
+    return bmi;
+}
+
+const weightInKg = parseFloat(prompt("Введите ваш вес в килограммах:"));
+const heightInCm = parseFloat(prompt("Введите ваш рост в сантиметрах:"));
+
+if (isNaN(weightInKg) || isNaN(heightInCm)) {
+    console.log("Пожалуйста, введите корректные числовые значения для веса и роста.");
+} else {
+    // Преобразуем рост из сантиметров в метры
+    const heightInM = heightInCm / 100;
+    const bmi = calculateBMI(weightInKg, heightInM);
+    console.log(`Ваш ИМТ: ${bmi.toFixed(2)}`);
+}
+
+
       function getRandomMeal(menuArray, usedMeals) {
         var availableMeals = menuArray.filter(function (meal) {
           return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
