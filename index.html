@@ -49,9 +49,19 @@
     <select id="choseMenu">
       <option value="Diet">Деетическое</option>
       <option value="Regular">Обычное</option>
+      <option value="Special">Персональное</option>
     </select>
 
     <button onclick="generateMenus()">Сгенерировать меню</button>
+    <button id="BTNINP" onclick="BMI()">Под ваши параметры</button>
+    <div id="input-box">
+            <div id="inputs">
+                <input id ="Height" type="text" placeholder="Ваш рост">
+                <input id="Weight" type="text" placeholder="Ваш вес">
+                <b id="imtonpg"></b>
+            </div>
+            
+    </div>
 
     <div id="menus"></div>
 
@@ -104,14 +114,20 @@
         { name: "Зерновые батончики", composition: "Злаки, мед, орехи" },
       ];
 
-function calculateBMI(weight, height) {
+
+function BMI() {
+    function calculateBMI(weight, height) {
     // Рассчитываем ИМТ по формуле: ИМТ = вес (кг) / (рост (м) * рост (м))
     const bmi = weight / (height * height);
     return bmi;
 }
 
-const weightInKg = parseFloat(prompt("Введите ваш вес в килограммах:"));
-const heightInCm = parseFloat(prompt("Введите ваш рост в сантиметрах:"));
+const BTNINP = document.getElementById("BTNINP");
+const weightInKg = document.getElementById("Weight").value;//parseFloat(prompt("Введите ваш вес в килограммах:"));
+const heightInCm = document.getElementById("Height").value;//parseFloat(prompt("Введите ваш рост в сантиметрах:"));
+const CONINP = document.getElementById("inputs").value;
+const ConInp = document.getElementById("input-box").value;
+const Textonpg = document.getElementById("imtonpg");
 
 if (isNaN(weightInKg) || isNaN(heightInCm)) {
     console.log("Пожалуйста, введите корректные числовые значения для веса и роста.");
@@ -119,8 +135,10 @@ if (isNaN(weightInKg) || isNaN(heightInCm)) {
     // Преобразуем рост из сантиметров в метры
     const heightInM = heightInCm / 100;
     const bmi = calculateBMI(weightInKg, heightInM);
-    console.log(`Ваш ИМТ: ${bmi.toFixed(2)}`);
+    Textonpg.innerHTML = (`Ваш ИМТ: ${bmi.toFixed(2)}`);
 }
+}
+
 
 
       function getRandomMeal(menuArray, usedMeals) {
