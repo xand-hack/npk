@@ -19,51 +19,110 @@
       label,th,td,h1{
         font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
       }
+      #adidas{
+        background: white;
+        position: relative;
+      }
+      
+      .glava {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        transition: .3s;
+        top: -1000px;
+        z-index: 1000;
+  
+      }
+      
+      .glava-active {       
+        position: fixed;
+        top: 0;
+        visibility: visible;
+        opacity: 1;
+        transition: .3s;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        
+      }
+      .menus-active{
+        padding-top: 20px;
+      }
+      .btn-active , .nav-active{
+        visibility: hidden;
+      }
 
+          
+        
+   
     </style>
-  </head>
-  <body>
-    <h1>Меню на неделю:</h1>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>  </head>
+  
 
-    <label for="personCount">Количество персон: </label>
-    <select id="personCount">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
+<body>
+  <header>
 
-    <label for="mealCount">Приемов пищи в день: </label>
-    <select id="mealCount">
-      <option value="3">3</option>
-      <option value="5">4</option>
-    </select>
+    <nav class="nav" id="nav-1">
+      <button id="adidas">
+        <i class="fi fi-br-list"></i>
+      </button>
+     </nav>
+     <div class="btn" id="btn-1">
+       <button id="start" class="start" ">Нажми на меня </button>
+     </div>
+  </header> 
+   
+   <div id="glava-1" class="glava">
+    <div class="glava-content">
+      <button id="close" onclick="close()">закрыть</button>
+
+        <h1>Меню на неделю:</h1>
     
-    <label for="choseMenu">Выберите меню</label>
-    <select id="choseMenu">
-      <option value="Diet">Деетическое</option>
-      <option value="Regular">Обычное</option>
-      <option value="Special">Персональное</option>
-    </select>
-
-    <button onclick="generateMenus()">Сгенерировать меню</button>
-    <button id="BTNINP" onclick="BMI()">Под ваши параметры</button>
-    <div id="input-box">
-            <div id="inputs">
-                <input id ="Height" type="text" placeholder="Ваш рост">
-                <input id="Weight" type="text" placeholder="Ваш вес">
-                <b id="imtonpg"></b>
-            </div>
-            
+        <label for="personCount">Количество персон: </label>
+        <select id="personCount">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+    
+        <label for="mealCount">Приемов пищи в день: </label>
+        <select id="mealCount">
+          <option value="3">3</option>
+          <option value="5">4</option>
+        </select>
+    
+        <label for="choseMenu">Выберите меню</label>
+        <select id="choseMenu">
+          <option value="Diet">Деетическое</option>
+          <option value="Regular">Обычное</option>
+          <option value="Special">Персональное</option>
+        </select>
+    
+        <button class="generate" id="generate" onclick="generateMenus()">Сгенерировать меню</button>
+      </div >
+  
+      <div id="input-box">
+              <div id="inputs">
+                  <input id ="Height" type="text" placeholder="Ваш рост">
+                  <input id="Weight" type="text" placeholder="Ваш вес">
+                  <button id="BTNINP" onclick="BMI()">Под ваши параметры</button>
+                  <p id="imtonpg"></p>
+              </div>
+              
+      </div>
+  
     </div>
-
-    <div id="menus"></div>
+    <div  class="menus" id="menus"></div>
 
     <script>
       var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
@@ -115,6 +174,47 @@
       ];
 
 
+
+  // Модальное окно, которое необходимо открыть
+  const glava1 = document.getElementById("glava-1");
+
+  const gnrBTN = document.getElementById("generate");
+  const menu1 = document.getElementById("menus");
+  
+  const nav1 = document.getElementById("nav-1");
+  
+  const btn1 = document.getElementById("btn-1");
+  // Кнопка по которой происходит клик
+  const btnSTR = document.getElementById("start");
+  // Кнопка "закрыть" внутри модального окна
+  const btnCLS = document.getElementById("close");
+  
+  gnrBTN.addEventListener('click', () => {
+    menu1.classList.add('menus-active')
+    glava1.classList.remove('glava-active');
+    nav1.classList.remove('nav-active')
+    btn1.classList.remove('btn-active')
+    
+  })
+
+    btnSTR.addEventListener('click', () => {
+      glava1.classList.add('glava-active');
+      nav1.classList.add('nav-active')
+      btn1.classList.add('btn-active')
+      menu1.classList.remove('menus-active')
+
+      
+    })
+  
+    btnCLS.addEventListener('click', () => {
+      glava1.classList.remove('glava-active');
+      nav1.classList.remove('nav-active')
+      btn1.classList.remove('btn-active')
+      
+      
+    })
+
+  
 function BMI() {
     function calculateBMI(weight, height) {
     // Рассчитываем ИМТ по формуле: ИМТ = вес (кг) / (рост (м) * рост (м))
@@ -269,6 +369,8 @@ if (isNaN(weightInKg) || isNaN(heightInCm)) {
   }
 }
 
-    </script>
+
+  </script>
+  
   </body>
 </html>
