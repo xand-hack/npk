@@ -3,20 +3,16 @@
   <head>
     <title>Меню на неделю</title>
     <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+      
+      .day {
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            
+        }
 
-      table, th, td {
-        border: 1px solid black;
-      }
-
-      th, td {
-        padding: 10px;
-        text-align: left;
-      }
-      label,th,td,h1{
+      h2  {
         font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
       }
       #adidas{
@@ -25,40 +21,198 @@
       }
       
       .glava {
+        
         position: absolute;
         visibility: hidden;
         opacity: 0;
         transition: .3s;
         top: -1000px;
         z-index: 1000;
-  
       }
       
-      .glava-active {       
-        position: fixed;
+      .glava-active{       
+        position: absolute;
         top: 0;
         visibility: visible;
         opacity: 1;
-        transition: .3s;
+        transition: .5s;
         position: fixed;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
-        
+        background-color: rgb(255, 255, 255)
       }
+      
       .menus-active{
         padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .btn-active , .nav-active{
         visibility: hidden;
       }
+    
+      .DayПонедельник{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+.nextday{
+    background-color: pink;
+}
+.DayВторник{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
 
-          
-        
+.DayСреда{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+
+.DayЧетверг{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+
+.DayПятница{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+
+.DayСуббота{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+
+.DayВоскресенье{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    top: -1000px;
+    z-index: 1000;
+}
+
+.DayПонедельник-active{
+    position: absolute;
+    top: 90px;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(41, 139, 51)
+}
+.DayВторник-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(11, 195, 91)
+}
+.DayСреда-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow
+}
+.DayЧетверг-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: pink
+}
+.DayПятница-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red
+}
+.DayСуббота-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue
+}
+.DayВоскресенье-active{
+    position: absolute;
+    top: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: purple
+}
    
     </style>
+    <link rel="stylesheet" href="style.css">
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>  </head>
   
 
@@ -105,73 +259,100 @@
         <select id="choseMenu">
           <option value="Diet">Деетическое</option>
           <option value="Regular">Обычное</option>
-          <option value="Special">Персональное</option>
+        
         </select>
-    
         <button class="generate" id="generate" onclick="generateMenus()">Сгенерировать меню</button>
+        
       </div >
   
-      <div id="input-box">
-              <div id="inputs">
-                  <input id ="Height" type="text" placeholder="Ваш рост">
-                  <input id="Weight" type="text" placeholder="Ваш вес">
-                  <button id="BTNINP" onclick="BMI()">Под ваши параметры</button>
-                  <p id="imtonpg"></p>
-              </div>
-              
-      </div>
+     
   
     </div>
-    <div  class="menus" id="menus"></div>
+  
+
+      <div  class="menus" id="menus">
+      </div>
+      
+      </div>
+    </div>
 
     <script>
       var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-      //Массивы с вариантами блюд для каждого приема пищи(Диетического)
-      var breakfastdietOptions = [
-      {name:"Каша с фруктами/сухофруктами/орехами/медом", composition:"1)Овсянка – 3 ст. л.2) Молоко – 100 мл 3)Мед – 1 ч. л. 4)Орехи – 20 г 5(Фрукты и ягоды – по вкусу"},
-      {name:"Творожные сырники", composition:"1)Творог 5% – 400 г 2)Яичный белок – 4 шт.3)Подсластитель по вкусу"},
-      {name:"Ленивая овсянка в банке",composition:"1)Овсяные хлопья (не быстрого приготовления) – 100 г, 2)Натуральный йогурт или густой кефир – 60 мл, 3)Молоко  – 60 мл,4)Банан – 1 шт, 5)Фрукты, ягоды, сухофрукты по вкусу, 6)Мед по вкусу"},
-      {name:"Овсяноблин с различными начинками", composition:"1)Овсяные хлопья – 3 ст.л. 2)Молоко – 60 млЯйцо – 1 шт. 3)Начинка по вкусу"}
-      ];
+      var menus = {
+            "Diet": {
+                "breakfast": [
+                    { name: "Каша с фруктами", composition: "Овсянка, молоко, фрукты" },
+                    { name: "Творожные сырники", composition: "Творог, яичный белок, подсластитель" },
+                    { name: "Ленивая овсянка", composition: "Овсяные хлопья, йогурт, банан, мед" },
+                    { name: "Овсяноблин", composition: "Овсяные хлопья, молоко, яйцо, начинка" }
+                ],
+                "lunch": [
+                    { name: "Салат с тунцом", composition: "Тунец, фасоль, помидоры, оливковое масло" },
+                    { name: "Куриный рулет", composition: "Куриное филе, мандарины, грецкие орехи" },
+                    { name: "Уха из сибаса", composition: "Сибас, овощи, специи" },
+                    { name: "Томатный суп", composition: "Морепродукты, овощи, специи" }
+                ],
+                "dinner": [
+                    { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+                    { name: "Курица с картофелем", composition: "Куриное филе, картофель, специи" },
+                    { name: "Спагетти с чесноком", composition: "Спагетти, чеснок, масло" },
+                    { name: "Дорада в духовке", composition: "Дорада, лимон, базилик, масло" }
+                ],
+                "snack": [
+                    { name: "Фрукты", composition: "Яблоко, банан, груша" },
+                    { name: "Орехи", composition: "Грецкие орехи, миндаль" },
+                    { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
+                    { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
+                ]
+            },
+            "Regular": {
+                "breakfast": [
+                    { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
+                    { name: "Гречневая каша", composition: "Гречка, вода, соль" },
+                    { name: "Тосты", composition: "Хлеб, масло" },
+                    { name: "Фрукты", composition: "Яблоко, банан, апельсин" }
+                ],
+                "lunch": [
+                    { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" },
+                    { name: "Паста", composition: "Макароны, томатный соус, сыр" },
+                    { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" },
+                    { name: "Суп", composition: "Куриный бульон, лапша, овощи" }
+                ],
+                "dinner": [
+                    { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+                    { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" },
+                    { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса" },
+                    { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус" }
+                ],
+                "snack": [
+                    { name: "Фрукты", composition: "Яблоко, банан, груша" },
+                    { name: "Орехи", composition: "Грецкие орехи, миндаль" },
+                    { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
+                    { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
+                ]
+            }
+        };
 
-      var lunchdietOptions=[
-        {name:"Салат с тунцом и фасолью по-тоскански", composition:"Консервированный тунец в собственном соку, Фасоль каннеллини, Помидоры черри, Оливковое масло extra virgin,Зеленый лук с луковицей,Соль, Лимонный сок, Свежемолотый черный перец "},
-        {name:"Паровой куриный рулет с мандаринами и черносливом", composition:"Куриное филе,Мандарины,Толченые грецкие орехи,Чернослив без косточек,Соль, Специи, Молотый черный перец"},
-        {name:"Уха из сибаса", composition:"Сибас, Цукини, Морковь, Лук-порей,Сельдерей, Репчатый лук,Корень сельдерея,Кудрявая петрушка, Укроп, Соль   "},
-        {name:"Томатный суп из морепродуктов", composition:"Коктейль из морепродуктов, Репчатый лук,Чеснок, Сладкий перец, Помидоры, Томатный сок, Шафран, Сушеный базилик, Прованские травы, Лимонный сок, Куриное яйцо"},
-      ]
+        function getRandomMeal(menuArray, usedMeals) {
+            var availableMeals = menuArray.filter(function (meal) {
+                return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
+            });
 
-      var dinnerdietOptions = [
-        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
-        { name: "Курица с картофелем", composition: "Куринное варенная , картофель варенный " },
-        { name: "Спагетти с чесноком и маслом", composition: "Спагетти, Перец чили, Петрушка, Оливковое масло, Лимон, Соль, Молотый черный перец" },
-        { name: "Дорада в духовке с лимоном и базиликом", composition:"Дорада, Лимон, Оливковое масло, Соль, Молотый черный перец, Зеленый базилик "},
-      ];
-      // Массивы с вариантами блюд для каждого приема пищи(обычного)
-      var breakfastOptions = [
-        { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
-        { name: "Гречневая каша", composition: "Гречка, вода, соль" },
-        { name: "Тосты", composition: "Хлеб, масло" },
-        { name: "Фрукты", composition: "Яблоко, банан, апельсин" },
-      ];
-      var lunchOptions = [
-        { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" },
-        { name: "Паста", composition: "Макароны, томатный соус, сыр" },
-        { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" },
-        { name: "Суп", composition: "Куриный бульон, лапша, овощи" },
-      ];
-      var dinnerOptions = [
-        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
-        { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" },
-        { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса" },
-        { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус" },
-      ];
-      var snackOptions = [
-        { name: "Фрукты", composition: "Яблоко, банан, груша" },
-        { name: "Орехи", composition: "Грецкие орехи, миндаль" },
-        { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
-        { name: "Зерновые батончики", composition: "Злаки, мед, орехи" },
-      ];
+            if (availableMeals.length === 0) {
+                return "Исчерпаны варианты";
+            }
+
+            var randomIndex = Math.floor(Math.random() * availableMeals.length);
+            var selectedMeal = availableMeals[randomIndex];
+
+            usedMeals[selectedMeal.name] = (usedMeals[selectedMeal.name] || 0) + 1;
+
+            return selectedMeal;
+        }
+
+        function showComposition(composition) {
+            alert("Состав: " + composition);
+        }
 
 
 
@@ -188,6 +369,9 @@
   const btnSTR = document.getElementById("start");
   // Кнопка "закрыть" внутри модального окна
   const btnCLS = document.getElementById("close");
+  //DayOfWeek
+  
+  
   
   gnrBTN.addEventListener('click', () => {
     menu1.classList.add('menus-active')
@@ -201,9 +385,8 @@
       glava1.classList.add('glava-active');
       nav1.classList.add('nav-active')
       btn1.classList.add('btn-active')
-      menu1.classList.remove('menus-active')
-
-      
+      //menu1.classList.remove('menus-active')
+      menu1.innerHTML = "";  
     })
   
     btnCLS.addEventListener('click', () => {
@@ -211,36 +394,7 @@
       nav1.classList.remove('nav-active')
       btn1.classList.remove('btn-active')
       
-      
     })
-
-  
-function BMI() {
-    function calculateBMI(weight, height) {
-    // Рассчитываем ИМТ по формуле: ИМТ = вес (кг) / (рост (м) * рост (м))
-    const bmi = weight / (height * height);
-    return bmi;
-}
-
-const BTNINP = document.getElementById("BTNINP");
-const weightInKg = document.getElementById("Weight").value;//parseFloat(prompt("Введите ваш вес в килограммах:"));
-const heightInCm = document.getElementById("Height").value;//parseFloat(prompt("Введите ваш рост в сантиметрах:"));
-const CONINP = document.getElementById("inputs").value;
-const ConInp = document.getElementById("input-box").value;
-const Textonpg = document.getElementById("imtonpg");
-
-if (isNaN(weightInKg) || isNaN(heightInCm)) {
-    console.log("Пожалуйста, введите корректные числовые значения для веса и роста.");
-} else {
-    // Преобразуем рост из сантиметров в метры
-    const heightInM = heightInCm / 100;
-    const bmi = calculateBMI(weightInKg, heightInM);
-    Textonpg.innerHTML = (`Ваш ИМТ: ${bmi.toFixed(2)}`);
-}
-}
-
-
-
       function getRandomMeal(menuArray, usedMeals) {
         var availableMeals = menuArray.filter(function (meal) {
           return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
@@ -264,113 +418,141 @@ if (isNaN(weightInKg) || isNaN(heightInCm)) {
       }
 
       function generateMenus() {
-        var personCount = document.getElementById("personCount").value;
-        var mealCount = parseInt(document.getElementById("mealCount").value);
-        var menusContainer = document.getElementById("menus");
-        var choseMenu = document.getElementById("choseMenu").value;
-        menusContainer.innerHTML = ""; // Очищаем контейнер перед генерацией
+            var personCount = document.getElementById("personCount").value;
+            var mealCount = parseInt(document.getElementById("mealCount").value);
+            var menusContainer = document.getElementById("menus");
+            var choseMenu = document.getElementById("choseMenu").value;
+            var DAYSWK = document.getElementById("DAYS");
+            menusContainer.innerHTML = "";
+
+            var includeSnack = mealCount === 5;
+            var menu = menus[choseMenu];
+
+            for (var i = 0; i < daysOfWeek.length; i++) {
+                var day = daysOfWeek[i];
+                var days = document.createElement("div");
+                days.className = "Day"+day;
+                days.id = "Day"+day ;
+                var dayMenu = document.createElement("div");
+                dayMenu.className = "day-" + day;
+                dayMenu.innerHTML = "<h2>" + day + "</h2>";
+                var nextDAY = document.createElement("button");
+                nextDAY.textContent = "След день";
+                nextDAY.id = "nextday"+day;
+                
+                
+                var usedMeals = {
+                    breakfast: {},
+                    lunch: {},
+                    dinner: {}
+                };
+
+                if (includeSnack) {
+                    usedMeals.snack = {};
+                }
+                var mealTypes = ["breakfast", "lunch", "dinner"];
+        if (includeSnack) mealTypes.push("snack");
+
+        // объект русских названий
+        var russianMealTypes = {
+            "breakfast": "Завтрак",
+            "lunch": "Обед",
+            "dinner": "Ужин",
+            "snack": "Полдник"
+        };
         
-      
-        var includeSnack = mealCount === 5;
-        
-        
-        
-        if(choseMenu =="Regular"){
-        for (var person = 1; person <= personCount; person++) {
-          var personMenu = document.createElement("table");
-          var menuHeader = "<tr><th>День недели</th><th>Завтрак</th><th>Обед</th>";
-            
-          if (includeSnack) {
-            menuHeader += "<th>Полдник</th>";
-          }
+        for (var j = 0; j < mealTypes.length; j++) {
+            var mealType = mealTypes[j];
 
-          menuHeader += "<th>Ужин</th></tr>";
-          personMenu.innerHTML = menuHeader;
+            // Получит название из объекта
+            var russianMealType = russianMealTypes[mealType] || mealType;
 
-          var usedBreakfasts = {};
-          var usedLunches = {};
-          var usedDinners = {};
-          var usedSnacks = {};
-
-          for (var i = 0; i < daysOfWeek.length; i++) {
-            var day = daysOfWeek[i];
-            var row = personMenu.insertRow();
-            var cell1 = row.insertCell(0);
-            cell1.textContent = day;
-            var cell2 = row.insertCell(1);
-            var breakfast = getRandomMeal(breakfastOptions, usedBreakfasts);
-            cell2.innerHTML = breakfast.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + breakfast.composition + '\')">Показать состав</a>';
-            var cell3 = row.insertCell(2);
-            var lunch = getRandomMeal(lunchOptions, usedLunches);
-            cell3.innerHTML = lunch.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + lunch.composition + '\')">Показать состав</a>';
-
-            if (includeSnack) {
-              var cell4 = row.insertCell(3);
-              var snack = getRandomMeal(snackOptions, usedSnacks);
-              cell4.innerHTML = snack.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + snack.composition + '\')">Показать состав</a>';
-              var cell5 = row.insertCell(4);
-              var dinner = getRandomMeal(dinnerOptions, usedDinners);
-              cell5.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
-            } else {
-              var cell4 = row.insertCell(3);
-              var dinner = getRandomMeal(dinnerOptions, usedDinners);
-              cell4.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
-            }
-          }
-
-          menusContainer.appendChild(personMenu);
+            var meal = getRandomMeal(menu[mealType], usedMeals[mealType]);
+            var mealBlock = document.createElement("p");
+            mealBlock.innerHTML = "<strong>" + russianMealType + ": </strong>" + meal.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + meal.composition + '\')">Показать состав</a>';
+            dayMenu.appendChild(mealBlock);
         }
-      }
-      if(choseMenu =="Diet"){
-        for (var person = 1; person <= personCount; person++) {
-          var personMenu = document.createElement("table");
-          var menuHeader = "<tr><th>День недели</th><th>Завтрак</th><th>Обед</th>";
-            
-          if (includeSnack) {
-            menuHeader += "<th>Полдник</th>";
-          }
-
-          menuHeader += "<th>Ужин</th></tr>";
-          personMenu.innerHTML = menuHeader;
-
-          var usedBreakfasts = {};
-          var usedLunches = {};
-          var usedDinners = {};
-          var usedSnacks = {};
-
-          for (var i = 0; i < daysOfWeek.length; i++) {
-            var day = daysOfWeek[i];
-            var row = personMenu.insertRow();
-            var cell1 = row.insertCell(0);
-            cell1.textContent = day;
-            var cell2 = row.insertCell(1);
-            var breakfast = getRandomMeal(breakfastdietOptions, usedBreakfasts);
-            cell2.innerHTML = breakfast.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + breakfast.composition + '\')">Показать состав</a>';
-            var cell3 = row.insertCell(2);
-            var lunch = getRandomMeal(lunchdietOptions, usedLunches);
-            cell3.innerHTML = lunch.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + lunch.composition + '\')">Показать состав</a>';
-
-            if (includeSnack) {
-              var cell4 = row.insertCell(3);
-              var snack = getRandomMeal(snackOptions, usedSnacks);
-              cell4.innerHTML = snack.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + snack.composition + '\')">Показать состав</a>';
-              var cell5 = row.insertCell(4);
-              var dinner = getRandomMeal(dinnerdietOptions, usedDinners);
-              cell5.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
-            } else {
-              var cell4 = row.insertCell(3);
-              var dinner = getRandomMeal(dinnerdietOptions, usedDinners);
-              cell4.innerHTML = dinner.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + dinner.composition + '\')">Показать состав</a>';
-            }
-          }
-
-          menusContainer.appendChild(personMenu);
+            days.appendChild(dayMenu);  
+            days.appendChild(nextDAY);
+          
+          menusContainer.appendChild(days);    
     }
+    
+    
+    
+
+    const mnd = document.getElementById('DayПонедельник');
+    mnd.classList.add('DayПонедельник-active');
+    
+    const tu = document.getElementById('DayВторник');
+    const wen = document.getElementById('DayСреда');
+    const thu = document.getElementById('DayЧетверг');
+    const fr = document.getElementById('DayПятница');
+    const sat = document.getElementById('DayСуббота');
+    const sun = document.getElementById('DayВоскресенье')
+//переход на вторник
+  const nxtMND = document.getElementById('nextdayПонедельник')
+  if(nxtMND){
+    nxtMND.addEventListener('click', function(){
+      if(nxtMND.click){
+            mnd.classList.remove('DayПонедельник-active');
+            tu.classList.add('DayВторник-active')
+      }
+    })
   }
+//переход на среду
+  const nxtTUE = document.getElementById('nextdayВторник')
+  if(nxtTUE){
+    nxtTUE.addEventListener('click', function(){
+      if (nxtTUE.click) {
+        tu.classList.remove('DayВторник-active')
+        wen.classList.add('DayСреда-active')
+      }
+    })
+  }
+//переход на четверг
+const nxtWEN = document.getElementById('nextdayСреда')
+if(nxtWEN){
+  nxtWEN.addEventListener('click', function(){
+    if (nxtWEN.click){
+      wen.classList.remove('DayСреда-active')
+      thu.classList.add('DayЧетверг-active')
+    }
+  })
+}
+//переход на пятницу
+const nxtTHU = document.getElementById('nextdayЧетверг')
+if(nxtTHU){
+  nxtTHU.addEventListener('click', function(){
+    if (nxtTHU.click){
+      thu.classList.remove('DayЧетверг-active')
+      fr.classList.add('DayПятница-active')
+    }
+  })
+}
+//переход на субботу
+const nxtFRI = document.getElementById('nextdayПятница')
+if(nxtFRI){
+  nxtFRI.addEventListener('click', function(){
+    if (nxtFRI.click){
+      fr.classList.remove('DayПятница-active')
+      sat.classList.add('DayСуббота-active')
+    }
+  })
+}
+//переход на воскесенье
+const nxtSAT = document.getElementById('nextdayСуббота')
+if(nxtSAT){
+  nxtSAT.addEventListener('click', function(){
+    if (nxtSAT.click){
+      sat.classList.remove('DayСуббота-active')
+      sun.classList.add('DayВоскресенье-active')
+    }
+  })
 }
 
-
+}
   </script>
-  
+ 
   </body>
 </html>
