@@ -1,795 +1,384 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-   
-    <style>
-        .desktop-light-theme {
-  background-color: #e9eae5;
- 
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
+  <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Меню на неделю</title>
+        <style>
+            body {
+ background-image: url('123.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+    }
+            .day {
+                margin: 20px;
+                padding: 10px;
+                border-radius: 10px;
+                display: inline-block;
+                background-color: white;
+            }
 
-.desktop-light-theme .overlap-wrapper {
-  background-color: #e9eae5;
-  width: 1440px;
-  height: 1024px;
-}
+            .excluded-product {
+                color: red;
+                font-weight: bold;
+            }
 
-.desktop-light-theme .overlap {
-  position: relative;
-  width: 1548px;
-  height: 1321px;
-  top: -212px;
-  left: -108px;
-}
-
-.desktop-light-theme .overlap-group {
-  position: absolute;
-  width: 1548px;
-  height: 1321px;
-  top: 0;
-  left: 0;
-}
-
-.desktop-light-theme .group {
-  position: absolute;
-  width: 1465px;
-  height: 570px;
-  top: 666px;
-  left: 83px;
-}
-
-.desktop-light-theme .div {
-  position: relative;
-  width: 1440px;
-  height: 570px;
-  left: 25px;
-}
-
-.desktop-light-theme .svg {
-  position: absolute;
-  width: 1440px;
-  height: 262px;
-  top: 308px;
-  left: 0;
-}
-
-.desktop-light-theme .svg-vegetables {
-  position: absolute;
-  width: 583px;
-  height: 570px;
-  top: 0;
-  left: 836px;
-  object-fit: cover;
-}
-
-.desktop-light-theme .overlap-group-wrapper {
-  position: absolute;
-  width: 1478px;
-  height: 1321px;
-  top: 0;
-  left: 0;
-}
-
-.desktop-light-theme .svg-spices-wrapper {
-  position: relative;
-  width: 1370px;
-  height: 1024px;
-  top: 212px;
-  left: 108px;
-  background-image: url(./img/svg-2.svg);
-  background-size: 100% 100%;
-}
-
-.desktop-light-theme .svg-spices {
-  position: absolute;
-  width: 524px;
-  height: 474px;
-  top: 550px;
-  left: 0;
-  object-fit: cover;
-}
-
-.desktop-light-theme .table-light-theme {
-  position: absolute;
-  width: 424px;
-  height: 504px;
-  top: 470px;
-  left: 632px;
-}
-
-.desktop-light-theme .svg-leaves {
-  position: absolute;
-  width: 436px;
-  height: 569px;
-  top: 255px;
-  left: 108px;
-}
-
-.desktop-light-theme .get-button {
-  position: absolute;
-  width: 299px;
-  height: 136px;
-  top: 250px;
-  left: 1083px;
-}
-
-.desktop-light-theme .get-wrapper {
-  position: relative;
-  width: 297px;
-  height: 136px;
-  background-image: url('/img/svg button cucumber.png');
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-.desktop-light-theme .get {
-  position: absolute;
-  top: 50px;
-  left: 102px;
-  -webkit-text-stroke: 1px #000000;
-  font-family: "Inter-BlackItalic", Helvetica;
-  font-weight: 900;
-  font-style: italic;
-  color: #fff400;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-  border: none;
-  background-color:inherit;
-}
-
-.desktop-light-theme .view {
-  position: absolute;
-  width: 326px;
-  height: 68px;
-  top: 226px;
-  left: 114px;
-}
-
-.desktop-light-theme .element {
-  width: 332px;
-  height: 68px;
-}
-
-.desktop-light-theme .overlap-group-2 {
-  position: relative;
-  width: 326px;
-  height: 68px;
-  top: -1px;
-  left: -1px;
-}
-
-.desktop-light-theme .text-wrapper {
-  width: 228px;
-  height: 32px;
-  top: 0;
-  left: 19px;
-  -webkit-text-stroke: 1px #000000;
-  font-family: "Luckiest Guy-Regular", Helvetica;
-  color: #89bc06;
-  font-size: 32px;
-  position: absolute;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.desktop-light-theme .text-wrapper-2 {
-  width: 93px;
-  height: 29px;
-  top: 31px;
-  left: 0;
-  -webkit-text-stroke: 1px #ffffff;
-  font-family: "Inter-Regular", Helvetica;
-  color: #000000;
-  font-size: 24px;
-  position: absolute;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.desktop-light-theme .text-wrapper-3 {
-  width: 158px;
-  height: 43px;
-  top: 25px;
-  left: 168px;
-  -webkit-text-stroke: 1px #ffffff;
-  font-family: "Inter-Regular", Helvetica;
-  color: #000000;
-  font-size: 24px;
-  position: absolute;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.desktop-light-theme .three-line-button {
-  position: absolute;
-  width: 20px;
-  height: 17px;
-  top: 222px;
-  left: 1518px;
-}
-.DayПонедельник, .DayВторник, .DayСреда, .DayЧетверг, .DayПятница, .DayСуббота, .DayВоскресенье  {
-        border: 1px solid black;
-            margin: 20px;
-            padding: 10px;
-            display: inline-block;
-            transition-duration: 250ms;
-            background-color: #fff;
-          
+            .menu-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 999;
+        }
+        .container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            position: relative;
         }
 
-      label,h2  {
-        font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-      }
-      #adidas{
-        background: white;
-        position: relative;
-      }
-      
-      .glava {
-        
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-        transition: .3s;
-        top: -1000px;
-        z-index: 1000;
-      }
-      
-      .glava-active{       
-        position: absolute;
-        top: 0;
-        visibility: visible;
-        opacity: 1;
-        transition: .5s;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(255, 255, 255)
-      }
-      
-      .menus-active{
-        padding-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .btn-active , .nav-active{
-        visibility: hidden;
-      }
+            .dropdown-menu {
+                display: none;
+                position: fixed;
+                top: 40px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                padding: 10px;
+            }
 
-      .excluded-product {
-            color: red;
-            font-weight: bold;
-        }
-        .menu-icon {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 999;
-}
-      .dropdown-menu {
-      display: none;
-      position: fixed;
-      top: 40px;
-      right: 20px;
-      background-color: #fff;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      padding: 10px;
-      }
+            .dropdown-menu a {
+                display: block;
+                padding: 10px;
+                text-decoration: none;
+                color: #333;
+            }
 
-    .dropdown-menu a {
-        display: block;
-        padding: 10px;
-        text-decoration: none;
+            .composition-container {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+.all {
+        background-color: #f4f4f4;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
         color: #333;
     }
-
-  .DayПонедельник:focus,
-  .DayВторник:focus,
-  .DayСреда:focus,
-  .DayЧетверг:focus,
-  .DayПятница:focus,
-  .DayСуббота:focus,
-  .DayВоскресенье:focus
-  {
-    transform: scale(1.2, 1.2);
-    transition-duration: 250ms;
-    margin:30px
-  }
-  
-  .dropdown-menu {
-            display: none;
-            position: fixed;
-            top: 40px;
-            right: 20px;
-            background-color: #fff;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            padding: 10px;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-
-
-
-
-
-  .DayПонедельник-hidden,
-  .DayВторник-hidden,
-  .DayСреда-hidden,
-  .DayЧетверг-hidden,
-  .DayПятница-hidden,
-  .DayСуббота-hidden,
-  .DayВоскресенье-hidden
-  {
-      visibility: hidden;
-      opacity: 0;
-  }
-  .DayПонедельник-active,
-  .DayВторник-active,
-  .DayСреда-active,
-  .DayЧетверг-active,
-  .DayПятница-active,
-  .DayСуббота-active,
-  .DayВоскресенье-active{
-    position: absolute;
-    top: 0;
-    visibility: visible;
-    opacity: 1;
-    transition: .5s;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
+    .row{
+         display: flex;
     justify-content: center;
     align-items: center;
-
-  }
-
-  .excluded-product {
-            color: red;
-            font-weight: bold;
-        }
-        #menus{
-            flex-direction: column;
-            align-items: center;
-        }
-        .table-light-theme{
-        visibility: hidden;
-    }   
-    .table-light-theme-active{
-        visibility:visible;
     }
-    </style>
-</head>
-  <body>
-    
-    <div class="desktop-light-theme" style="display: flex;">
-      <div class="overlap-wrapper">
-        <div class="overlap">
-            
-          <div class="overlap-group">
-            <div class="group">
-              <div class="div">
-                <img class="svg" src="img/wave lower 2whtWave.png" /> <img class="svg-vegetables" src="img/svg vegetables 1.png" />
-              </div>
-            </div>
-            <div class="overlap-group-wrapper">
-              <div class="svg-spices-wrapper">
-                <img class="svg-spices" src="img/svg spices 2.png" />
-                <img src="img/wave upper 2Wave.png" alt="">
-        </div>
-            </div>
-            <div class="table-light-theme" id="table-light-theme">
-                <div class="main-kamp" style="background:whitesmoke; position:absolute;">
-                    <h1>Меню на неделю:</h1>
-            <div class="menu-icon" onclick="toggleMenu()">...</div>
-             <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="#" onclick="openProfile()">Профиль</a>
-                    <a href="#" onclick="openSettings()">Настройки</a>
-                </div>
-            
-                <label for="personCount">Количество персон: </label>
-                <select id="personCount">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            
-                <label for="mealCount">Приемов пищи в день: </label>
-                <select id="mealCount">
-                    <option value="3">3</option>
-                    <option value="5">4</option>
-                </select>
-            
-                <label for="choseMenu">Выберите меню</label>
-                <select id="choseMenu">
-                    <option value="Diet">Деетическое</option>
-                    <option value="Regular">Обычное</option>
-                </select>
-                <input type="checkbox" name="season" id="season" class="season" onchange="Season()">
-            <label for="season">Сезоное</label>
-                
-                <label for="selectDisease">Выберите болезнь: </label>
-                <label for="selectDisease">Выберите болезнь: </label>
-            <select id="selectDisease" onchange="handleDiseaseSelection()">
-                <option value="none">Без болезни</option>
-                <option value="diabetes">Диабет</option>
-                <option value="hypertension">Гипертония</option>
-                <!-- Add more disease options as needed -->
-            </select>
-            <div class="composition-container" id="compositionContainer">
-                <h2>Состав блюда</h2>
-                <p id="compositionText"></p>
-                <button onclick="closeComposition()">Закрыть</button>
-            </div>
-                <button onclick="generateMenus()">Сгенерировать меню</button>
-            
-                <label for="searchProduct">Поиск продукта: </label>
-                <input type="text" id="searchProduct">
-                <button onclick="searchProduct()">Найти продукт</button>
-                
-                <div id="excludedProducts"></div>
-                <div id="menus" style="display: flex;"></div>
-            </div>
-            </div> 
-            <img class="svg-leaves" src="img/svg leaves 2.png" />
-            <div class="get-button">
-              <div class="get-wrapper"><button class="get" onclick="mainKampAct()">ПОЛУЧИТЬ</button></div>
-            </div>
-            <div class="view">
-              <div class="element">
-                <div class="overlap-group-2">
-                  <div class="text-wrapper">ПОЛУЧИТЕ</div>
-                  <div class="text-wrapper-2">ПЛАН</div>
-                  <div class="text-wrapper-3">ПИТАНИЯ</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="box">
-            <button class="three-line-button" style="height:auto; width:auto; border: none; background: local;">
-                <img src="img/three line button.png" style="width: 14px;" />
-            </button>
-            
+
+            label,
+            h1 {
+                font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container">
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#" onclick="openProfile()">Профиль</a>
+            <a href="#" onclick="openSettings()">Настройки</a>
         </div>
 
+        <label for="mealCount">Приемов пищи в день: </label>
+        <select id="mealCount">
+            <option value="3">3</option>
+            <option value="5">4</option>
+        </select>
+
+        <label for="seasonalMenu">Сезонное меню: </label>
+        <input type="checkbox" id="seasonalMenu" onchange="generateMenus()">
+
+        <label for="choseMenu">Выберите меню</label>
+        <select id="choseMenu">
+            <option value="Diet">Деетическое</option>
+            <option value="Regular">Обычное</option>
+        </select>
+
+        <label for="selectDisease">Выберите болезнь: </label>
+        <select id="selectDisease" onchange="handleDiseaseSelection()">
+            <option value="none">Без болезни</option>
+            <option value="diabetes">Диабет</option>
+            <option value="hypertension">Гипертония</option>
+        </select>
+
+        <div class="composition-container" id="compositionContainer">
+            <h2>Состав блюда</h2>
+            <p id="compositionText"></p>
+            <button onclick="closeComposition()">Закрыть</button>
         </div>
-      </div>
+
+        <button onclick="generateMenus()">Сгенерировать меню</button>
+
+        <label for="searchProduct">Поиск продукта: </label>
+        <input type="text" id="searchProduct">
+        <button onclick="searchProduct()">Найти продукт</button>
     </div>
-  </body>
-  <script>
- 
- function handleDiseaseSelection() {
-        var selectedDisease = document.getElementById("selectDisease").value;
 
-        switch (selectedDisease) {
-            case "diabetes":
-                addToExclusion("сахар");
-                addToExclusion("мед");
-                // Add more products to exclude for diabetes as needed
-                break;
-
-            case "hypertension":
-                addToExclusion("соль");
-                // Add more products to exclude for hypertension as needed
-                break;
-
-            // Add more cases for other diseases if needed
-
-            case "none":
-                // Clear existing exclusions for the default case
-                excludedProducts = [];
-                updateExcludedProducts();
-                break;
-        }
-    }
-    
-    
-    var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-      var menus = {
-            "Diet": {
-                "breakfast": [
-                    { name: "Каша с фруктами", composition: "Овсянка, молоко, фрукты" },
-                    { name: "Творожные сырники", composition: "Творог, яичный белок, подсластитель" },
-                    { name: "Ленивая овсянка", composition: "Овсяные хлопья, йогурт, банан, мед" },
-                    { name: "Овсяноблин", composition: "Овсяные хлопья, молоко, яйцо, начинка" }
-                ],
-                "lunch": [
-                    { name: "Салат с тунцом", composition: "Тунец, фасоль, помидоры, оливковое масло" },
-                    { name: "Куриный рулет", composition: "Куриное филе, мандарины, грецкие орехи" },
-                    { name: "Уха из сибаса", composition: "Сибас, овощи, специи" },
-                    { name: "Томатный суп", composition: "Морепродукты, овощи, специи" }
-                ],
-                "dinner": [
-                    { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
-                    { name: "Курица с картофелем", composition: "Куриное филе, картофель, специи" },
-                    { name: "Спагетти с чесноком", composition: "Спагетти, чеснок, масло" },
-                    { name: "Дорада в духовке", composition: "Дорада, лимон, базилик, масло" }
-                ],
-                "snack": [
-                    { name: "Фрукты", composition: "Яблоко, банан, груша" },
-                    { name: "Орехи", composition: "Грецкие орехи, миндаль" },
-                    { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
-                    { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
-                ]
-            },
-            "Regular": {
-                "breakfast": [
-                    { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
-                    { name: "Гречневая каша", composition: "Гречка, вода, соль" },
-                    { name: "Тосты", composition: "Хлеб, масло" },
-                    { name: "Фрукты", composition: "Яблоко, банан, апельсин" }
-                ],
-                "lunch": [
-                    { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" },
-                    { name: "Паста", composition: "Макароны, томатный соус, сыр" },
-                    { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" },
-                    { name: "Суп", composition: "Куриный бульон, лапша, овощи" }
-                ],
-                "dinner": [
-                    { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
-                    { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" },
-                    { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса" },
-                    { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус" }
-                ],
-                "snack": [
-                    { name: "Фрукты", composition: "Яблоко, банан, груша" },
-                    { name: "Орехи", composition: "Грецкие орехи, миндаль" },
-                    { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
-                    { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
-                ]
-            }
-        };
-            
-        function Season() {
-
-const SeasonChk = document.getElementById('season');
-Data = new Date();
-Month = Data.getMonth();
+    <div class="menu-icon" onclick="toggleMenu()">...</div>
+    <div id="excludedProducts"></div>
+    <div id="menus"></div>
 
 
-switch (Month)
-    {
-      case 0:
-        fMonth="января", Vegetables = ['Капуста белокочанная','Капуста красная,Капуста брюссельская.',' Лук-шалот и лук-порей, артишоки, репа, пастернак'],
-        Fruits = ['грейпфрут', 'лимон', 'апельсин', 'мандарин', 'айва', 'хурма']; 
-         break;
-      case 1:
-         fMonth="февраля", Vegetables = ['Капуста белокочанная','Капуста красная','Капуста брюссельская.', 'Лук-шалот', 'лук-порей', 'артишоки', 'репа', 'пастернак'],
-         Fruits = ['грейпфрут', 'лимон', 'апельсин', 'мандарин', 'айва', 'хурма'] ; 
-         break;
-      case 2:
-         fMonth="марта", Vegetables = ['В данном месяцу нет сезоного меню'], Fruits = ['В данном месяцу нет сезоного меню'];
-       break;
-      case 3: fMonth="апреля",  Vegetables = ['Кресс-салат и салат радиккио. Спаржа, шпинат, редька, ревень'], 
-      Fruits = ['В данном месяцу нет сезоного меню']; break;
-      case 4: fMonth="май",
-        Vegetables = ['Спаржа, шпинат, редька, белокочанная капуста. Кочанный салат,салат латук,салат радиккио,салат руккола. Молодой горошек'], 
-      Fruits = ['В данном месяцу нет сезоного меню']; break;
-      case 5: fMonth="июнь",  Vegetables = ['Спаржа, шпинат, редька и редиска, брюква. Фасоль, горошек. Морковь, кабачки, огурцы, болгарский перец. Цветная капуста, брокколи. Салаты: латук, кочанный, радикки'],
-       Fruits = ['Клубника и земляника, вишня и черешня. Красная смородина, крыжовник, черника']; break;
-      case 6: fMonth="июля", Vegetables = ['Молодой картофель, огурцы и помидоры. Цветная капуста, брокколи. Морковь, кабачки, баклажаны, болгарский перец. Зеленый горошек и фасоль. Сельдерей, лук-порей и репчатый лук. Кресс-салат, кочанный салат, латук'],
-       Fruits = ['Клубника, малина, вишня и черешня. Черная и красная смородина, черника, голубика, крыжовник. Персики, абрикосы, нектарины']
-        ; break;
-      case 7: fMonth="августа",  Vegetables = ['Картофель, помидоры и огурцы, морковь, баклажаны, кабачки и цуккини. Цветная капуста, красная капуста, брокколи, зеленый горошек. Болгарский перец, кукуруза, репчатый лук. Редис, редька, брюква, листовая свекла.'],
-       Fruits = ['Арбузы и дыни, сливы, персики, нектарины и абрикосы. Крыжовник, черника, смородина, облепиха'];
-        break;
-      case 8: fMonth="сентября",  Vegetables = ['Огурцы и помидоры, болгарский перец, морковь, тыква, кабачки, баклажаны и цуккини. Цветная капуста и брокколи. Репчатый лук и порей, капуста, хрен, редис и брюква'],
-       Fruits = ['Яблоки, сливы, инжир, груши. Дыни и арбузы. Облепиха']; break;
-      case 9: fMonth="октября",  Vegetables = ['Помидоры, морковь, тыква, брокколи, брюссельская и  цветная капуста. Лук-порей, брюква, репа, хрен'],
-       Fruits = ['Яблоки, груши, инжир']; break;
-      case 10: fMonth="ноября",  Vegetables = ['Морковь, тыква, репа. Цветная и брюссельская капуста. Лук-порей, хрен'],
-       Fruits = ['Хурма, груша, айва, клюква']; break;
-      case 11: fMonth="декабря",  Vegetables = ['Брюссельская капуста, тыква, репа, лук-порей'],
-       Fruits = ['Айва, хурма, гранат. Клюква. Цитрусовые']; break;
-    }
-   
-        
-      if(SeasonChk.checked ){
-        
-  
-    }else{
-        console.log('net');
-    }
-}
+        <script>
+            function handleDiseaseSelection() {
+                var selectedDisease = document.getElementById("selectDisease").value;
 
+                switch (selectedDisease) {
+                    case "diabetes":
+                        addToExclusion("сахар");
+                        addToExclusion("мед");
+                        // Add more products to exclude for diabetes as needed
+                        break;
 
-        
-        
-        var excludedProducts = [];
+                    case "hypertension":
+                        addToExclusion("соль");
+                        // Add more products to exclude for hypertension as needed
+                        break;
 
-        function getRandomMeal(menuArray, usedMeals) {
-            var availableMeals = menuArray.filter(function (meal) {
-                return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
-            });
-
-            if (availableMeals.length === 0) {
-                return "Исчерпаны варианты";
+                    case "none":
+                        // Clear existing exclusions for the default case
+                        excludedProducts = [];
+                        updateExcludedProducts();
+                        break;
+                }
             }
 
-            var randomIndex = Math.floor(Math.random() * availableMeals.length);
-            var selectedMeal = availableMeals[randomIndex];
+            var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
 
-            usedMeals[selectedMeal.name] = (usedMeals[selectedMeal.name] || 0) + 1;
+            var menus = {
+                "Diet": {
+                    "breakfast": [
+                        { name: "Каша с фруктами", composition: "сезон" },
+                        { name: "Творожные сырники", composition: "Творог, яичный белок, подсластитель" },
+                        { name: "Ленивая овсянка", composition: "Овсяные хлопья, йогурт, банан, мед" },
+                        { name: "Овсяноблин", composition: "Овсяные хлопья, молоко, яйцо, начинка" }
+                    ],
+                    "lunch": [
+                        { name: "Салат с тунцом", composition: "Тунец, фасоль, помидоры, оливковое масло" },
+                        { name: "Куриный рулет", composition: "Куриное филе, мандарины, грецкие орехи" },
+                        { name: "Уха из сибаса", composition: "Сибас, овощи, специи" },
+                        { name: "Томатный суп", composition: "Морепродукты, овощи, специи" }
+                    ],
+                    "dinner": [
+                        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+                        { name: "Курица с картофелем", composition: "Куриное филе, картофель, специи" },
+                        { name: "Спагетти с чесноком", composition: "Спагетти, чеснок, масло" },
+                        { name: "Дорада в духовке", composition: "Дорада, лимон, базилик, масло" }
+                    ],
+                    "snack": [
+                        { name: "Фрукты", composition: "Яблоко, банан, груша" },
+                        { name: "Орехи", composition: "Грецкие орехи, миндаль" },
+                        { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
+                        { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
+                    ]
+                },
+                "Regular": {
+                    "breakfast": [
+                        { name: "Омлет", composition: "Яйца, молоко, соль, перец" },
+                        { name: "Гречневая каша", composition: "Гречка, вода, соль" },
+                        { name: "Тосты", composition: "Хлеб, масло" },
+                        { name: "Фрукты", composition: "Яблоко, банан, апельсин" }
+                    ],
+                    "lunch": [
+                        { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" },
+                        { name: "Паста", composition: "Макароны, томатный соус, сыр" },
+                        { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" },
+                        { name: "Суп", composition: "Куриный бульон, лапша, овощи" }
+                    ],
+                    "dinner": [
+                        { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" },
+                        { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" },
+                        { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса" },
+                        { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус" }
+                    ],
+                    "snack": [
+                        { name: "Фрукты", composition: "Яблоко, банан, груша" },
+                        { name: "Орехи", composition: "Грецкие орехи, миндаль" },
+                        { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" },
+                        { name: "Зерновые батончики", composition: "Злаки, мед, орехи" }
+                    ]
+                }
+            };
 
-            return selectedMeal;
-        }
+            var excludedProducts = [];
 
-      function getRandomMeal(menuArray, usedMeals) {
-        var availableMeals = menuArray.filter(function (meal) {
-          return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
-        });
-
-        if (availableMeals.length === 0) {
-          return "Исчерпаны варианты";
-        }
-
-        var randomIndex = Math.floor(Math.random() * availableMeals.length);
-        var selectedMeal = availableMeals[randomIndex];
-
-        // Увеличиваем счетчик использования
-        usedMeals[selectedMeal.name] = (usedMeals[selectedMeal.name] || 0) + 1;
-
-        return selectedMeal;
-      }
-
-    
-
-      function showComposition(composition) {
-    var compositionContainer = document.getElementById("compositionContainer");
-    var compositionText = document.getElementById("compositionText");
-
-    compositionText.innerHTML = "Состав: " + composition;
-    compositionContainer.style.display = "block";
-}
-
-function closeComposition() {
-    var compositionContainer = document.getElementById("compositionContainer");
-    compositionContainer.style.display = "none";
-}
-      function addToExclusion(product) {
-            if (excludedProducts.indexOf(product) === -1) {
-                excludedProducts.push(product);
-                updateExcludedProducts();
-            }
-        }
-
-        function removeFromExclusion(product) {
-            var index = excludedProducts.indexOf(product);
-            if (index !== -1) {
-                excludedProducts.splice(index, 1);
-                updateExcludedProducts();
-            }
-        }
-
-        function updateExcludedProducts() {
-            var excludedProductsContainer = document.getElementById("excludedProducts");
-            excludedProductsContainer.innerHTML = "<h3>Исключенные продукты:</h3>";
-
-            if (excludedProducts.length === 0) {
-                excludedProductsContainer.innerHTML += "Нет исключенных продуктов.";
-            } else {
-                excludedProducts.forEach(function (product) {
-                    var productBlock = document.createElement("div");
-                    productBlock.className = "excluded-product";
-                    productBlock.innerHTML = product + ' <span style="cursor: pointer;" onclick="removeFromExclusion(\'' + product + '\')">✖</span>';
-                    excludedProductsContainer.appendChild(productBlock);
+            function getRandomMeal(menuArray, usedMeals, excludedProducts) {
+                var availableMeals = menuArray.filter(function (meal) {
+                    return !usedMeals[meal.name] || usedMeals[meal.name] < 2;
                 });
+
+                availableMeals = availableMeals.filter(function (meal) {
+                    return !excludedProducts.some(function (product) {
+                        return meal.composition.toLowerCase().includes(product.toLowerCase());
+                    });
+                });
+
+                if (availableMeals.length === 0) {
+                    return { name: "Исчерпаны варианты", composition: "" };
+                }
+
+                var randomIndex = Math.floor(Math.random() * availableMeals.length);
+                var selectedMeal = availableMeals[randomIndex];
+
+                usedMeals[selectedMeal.name] = (usedMeals[selectedMeal.name] || 0) + 1;
+
+                return selectedMeal;
             }
-        }
 
-        function searchProduct() {
-            var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
+            function showComposition(composition) {
+                var compositionContainer = document.getElementById("compositionContainer");
+                var compositionText = document.getElementById("compositionText");
 
-            // Проверка на пустое значение
-            if (searchTerm === "") {
-                alert("Введите название продукта для поиска.");
-                return;
+                compositionText.innerHTML = "Состав: " + composition;
+                compositionContainer.style.display = "block";
             }
 
-            var foundProducts = [];
+            function closeComposition() {
+                var compositionContainer = document.getElementById("compositionContainer");
+                compositionContainer.style.display = "none";
+            }
 
-            // Собираем блюда, содержащие искомый продукт
-            var affectedDishes = [];
-            for (var menuType in menus) {
-                for (var mealType in menus[menuType]) {
-                    menus[menuType][mealType].forEach(function (meal) {
-                        if (meal.composition.toLowerCase().includes(searchTerm) && foundProducts.indexOf(meal.name) === -1) {
-                            foundProducts.push(meal.name);
-                            affectedDishes.push({
-                                menuType: menuType,
-                                mealType: mealType,
-                                meal: meal
-                            });
-                        }
+
+            function addToExclusion(product) {
+                if (excludedProducts.indexOf(product) === -1) {
+                    excludedProducts.push(product);
+                    updateExcludedProducts();
+                }
+            }
+
+            function removeFromExclusion(product) {
+                var index = excludedProducts.indexOf(product);
+                if (index !== -1) {
+                    excludedProducts.splice(index, 1);
+                    updateExcludedProducts();
+                }
+            }
+
+            function updateExcludedProducts() {
+                var excludedProductsContainer = document.getElementById("excludedProducts");
+                excludedProductsContainer.innerHTML = "<h3>Исключенные продукты:</h3>";
+
+                if (excludedProducts.length === 0) {
+                    excludedProductsContainer.innerHTML += "Нет исключенных продуктов.";
+                } else {
+                    excludedProducts.forEach(function (product) {
+                        var productBlock = document.createElement("div");
+                        productBlock.className = "excluded-product";
+                        productBlock.innerHTML = product + ' <span style="cursor: pointer;" onclick="removeFromExclusion(\'' + product + '\')">✖</span>';
+                        excludedProductsContainer.appendChild(productBlock);
                     });
                 }
             }
 
-  
-            if (foundProducts.length > 0) {
-                // Заменяем все затронутые блюда случайными альтернативами
-                affectedDishes.forEach(function (affectedDish) {
-                    var availableMeals = menus[affectedDish.menuType][affectedDish.mealType].filter(function (meal) {
-                        return meal.name !== affectedDish.meal.name;
-                    });
+           function searchProduct() {
+        var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
 
-                    // Проверяем, что есть более 2-х блюд для замены
-                    if (availableMeals.length < 3) {
-                        alert("Невозможно добавить блюдо в исключение, так как останется меньше 2 вариантов.");
-                        return;
-                    }
+        // Проверка на пустое значение
+        if (searchTerm === "") {
+            alert("Введите название продукта для поиска.");
+            return;
+        }
 
-                    var alternativeDish = getRandomMeal(availableMeals, {});
-                    var index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
+        // Добавляем продукт в исключения
+        addToExclusion(searchTerm);
 
-                    while (index !== -1) {
-                        menus[affectedDish.menuType][affectedDish.mealType].splice(index, 1, alternativeDish);
-                        index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
+        var foundProducts = [];
+
+        // Собираем блюда, содержащие искомый продукт
+        var affectedDishes = [];
+        for (var menuType in menus) {
+            for (var mealType in menus[menuType]) {
+                menus[menuType][mealType].forEach(function (meal) {
+                    if (meal.composition.toLowerCase().includes(searchTerm) && foundProducts.indexOf(meal.name) === -1) {
+                        foundProducts.push(meal.name);
+                        affectedDishes.push({
+                            menuType: menuType,
+                            mealType: mealType,
+                            meal: meal
+                        });
                     }
                 });
-
-                alert("Блюда с продуктом '" + searchTerm + "' были заменены. Новые блюда сгенерированы.");
-                generateMenus(); // Перегенерируем меню для отображения обновленных блюд
-                addToExclusion(searchTerm); // Добавим продукт в исключения
-            } else {
-                alert("Продукт не найден.");
             }
         }
-      function generateMenus() {
-            var personCount = document.getElementById("personCount").value;
-            var mealCount = parseInt(document.getElementById("mealCount").value);
-            var menusContainer = document.getElementById("menus");
-            var choseMenu = document.getElementById("choseMenu").value;
-            var DAYSWK = document.getElementById("DAYS");
-            menusContainer.innerHTML = "";
 
-            var includeSnack = mealCount === 5;
-            var menu = menus[choseMenu];
+        if (foundProducts.length > 0) {
+            // Заменяем все затронутые блюда случайными альтернативами
+            affectedDishes.forEach(function (affectedDish) {
+                var availableMeals = menus[affectedDish.menuType][affectedDish.mealType].filter(function (meal) {
+                    return meal.name !== affectedDish.meal.name;
+                });
 
-            for (var i = 0; i < daysOfWeek.length; i++) {
-                var day = daysOfWeek[i];
-                var days = document.createElement("div");
-                days.className = "Day"+day;
-                days.id = "Day"+day ;
-                days.tabIndex = 1;
+                // Проверяем, что есть более 2-х блюд для замены
+                if (availableMeals.length < 3) {
+                    alert("Невозможно добавить блюдо в исключение, так как останется меньше 2 вариантов.");
+                    return;
+                }
+
+                var alternativeDish = getRandomMeal(availableMeals, {});
+                var index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
+
+                while (index !== -1) {
+                    menus[affectedDish.menuType][affectedDish.mealType].splice(index, 1, alternativeDish);
+                    index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
+                }
+            });
+
+            alert("Блюда с продуктом '" + searchTerm + "' были заменены. Новые блюда сгенерированы.");
+            generateMenus(); // Перегенерируем меню для отображения обновленных блюд
+        } else {
+            alert("Продукт не найден в текущем меню. Он был добавлен в исключения.");
+        }
+    }
+function generateMenus() {
+    var mealCount = parseInt(document.getElementById("mealCount").value);
+    var menusContainer = document.getElementById("menus");
+    var choseMenu = document.getElementById("choseMenu").value;
+    var seasonalMenuCheckbox = document.getElementById("seasonalMenu");
+    menusContainer.innerHTML = "";
+
+    var selectedDisease = document.getElementById("selectDisease").value;
+    handleDiseaseSelection(selectedDisease);
+
+    var includeSnack = mealCount === 5;
+    var menu = menus[choseMenu];
+
+    if (seasonalMenuCheckbox.checked) {
+        // Приоритизировать сезонные блюда, переместив их в начало массива меню
+        for (var mealType in menu) {
+            menu[mealType] = prioritizeSeasonalItems(menu[mealType]);
+        }
+    }
+
+    var daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+
+    for (var i = 0; i < daysOfWeek.length; i += 3) {
+        var row = document.createElement("div");
+        row.className = "row";
+
+        for (var j = 0; j < 3; j++) {
+            var dayIndex = i + j;
+            if (dayIndex < daysOfWeek.length) {
+                var day = daysOfWeek[dayIndex];
                 var dayMenu = document.createElement("div");
-                dayMenu.className = "day-" + day;
+                dayMenu.className = "day";
                 dayMenu.innerHTML = "<h2>" + day + "</h2>";
-               
-                
-                
+
                 var usedMeals = {
                     breakfast: {},
                     lunch: {},
@@ -799,59 +388,60 @@ function closeComposition() {
                 if (includeSnack) {
                     usedMeals.snack = {};
                 }
+
                 var mealTypes = ["breakfast", "lunch", "dinner"];
-        if (includeSnack) mealTypes.push("snack");
+                if (includeSnack) mealTypes.push("snack");
 
-        // объект русских названий
-        var russianMealTypes = {
-            "breakfast": "Завтрак",
-            "lunch": "Обед",
-            "dinner": "Ужин",
-            "snack": "Полдник"
-        };
-        
-        for (var j = 0; j < mealTypes.length; j++) {
-            var mealType = mealTypes[j];
+                var russianMealTypes = {
+                    "breakfast": "Завтрак",
+                    "lunch": "Обед",
+                    "dinner": "Ужин",
+                    "snack": "Полдник"
+                };
 
-            // Получит название из объекта
-            var russianMealType = russianMealTypes[mealType] || mealType;
+                for (var k = 0; k < mealTypes.length; k++) {
+                    var mealType = mealTypes[k];
+                    var russianMealType = russianMealTypes[mealType] || mealType;
 
-            var meal = getRandomMeal(menu[mealType], usedMeals[mealType]);
-            var mealBlock = document.createElement("p");
-            mealBlock.innerHTML = "<strong>" + russianMealType + ": </strong>" + meal.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + meal.composition + '\')">Показать состав</a>';
-            dayMenu.appendChild(mealBlock);
+                    var meal = getRandomMeal(menu[mealType], usedMeals[mealType], excludedProducts);
+                    var mealBlock = document.createElement("p");
+                    mealBlock.innerHTML = "<strong>" + russianMealType + ": </strong>" + meal.name + ' <a href="javascript:void(0);" onclick="showComposition(\'' + meal.composition + '\')">Показать состав</a>';
+                    dayMenu.appendChild(mealBlock);
+                }
+
+                row.appendChild(dayMenu);
+            }
         }
-            days.appendChild(dayMenu);  
-            
-          
-          menusContainer.appendChild(days);    
+
+        menusContainer.appendChild(row);
     }
-    
-      }
-      
+}
+     function prioritizeSeasonalItems(menuItems) {
+            var seasonalItems = menuItems.filter(item => isSeasonal(item.composition));
+            var nonSeasonalItems = menuItems.filter(item => !isSeasonal(item.composition));
+            return seasonalItems.concat(nonSeasonalItems);
+        }
 
-       function toggleMenu() {
-          var dropdownMenu = document.getElementById("dropdownMenu");
-          dropdownMenu.style.display = (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") ? "block" : "none";
-      }
+        function isSeasonal(composition) {
+            // Здесь вы можете реализовать свою логику для определения, является ли блюдо сезонным на основе его состава
+            // На данный момент предположим простую проверку наличия слова "сезон" в составе
+            return composition.toLowerCase().includes("сезон");
+        }
+             function toggleMenu() {
+                var dropdownMenu = document.getElementById("dropdownMenu");
+                dropdownMenu.style.display = (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") ? "block" : "none";
+            }
 
-      function openProfile() {
-          alert("Открываем профиль");
-          toggleMenu(); // Скрыть меню после выбора
-      }
+            function openProfile() {
+                alert("Открываем профиль");
+                toggleMenu(); // Скрыть меню после выбора
+            }
 
-      function openSettings() {
-          alert("Открываем настройки");
-          toggleMenu(); // Скрыть меню после выбора
-      }
-    function mainKampAct () {
-        const TableLight = document.getElementById('table-light-theme');
-        TableLight.classList.add('table-light-theme-active')
-    }
-      
+            function openSettings() {
+                alert("Открываем настройки");
+                toggleMenu(); // Скрыть меню после выбора
+            }
 
-  </script>
-</html>
-
-  </body>
-</html>
+        </script>
+    </body>
+    </html>
