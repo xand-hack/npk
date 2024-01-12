@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Меню на неделю</title>
     <style>
-       
     button {
         padding: 10px 20px;
   background-color: #47b21698;
@@ -136,7 +135,6 @@ button:focus {
     margin:30px
   }
   
-
         label,
         h1 {
             font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
@@ -145,9 +143,6 @@ button:focus {
             background-color: white;
             width: 200px;
         }
-        /*#menus{
-            margin-top: 150px;
-        }*/
         .close{
             border: none;
             margin: 2px;
@@ -156,7 +151,6 @@ button:focus {
        
     </style>
        
-
 </head>
 <body>
    <div class="container" id="container" >
@@ -188,8 +182,6 @@ button:focus {
         <option value="hypertension">Гипертония</option>
     </select>
 
- 
-
     <button onclick="generateMenus()">Сгенерировать меню</button>
 
     <label for="searchProduct">Поиск продукта: </label>
@@ -208,7 +200,6 @@ button:focus {
 
 <div id="menus"></div>
 
-
 <script>
     function handleDiseaseSelection() {
         var selectedDisease = document.getElementById("selectDisease").value;
@@ -217,16 +208,13 @@ button:focus {
             case "diabetes":
                 addToExclusion("сахар");
                 addToExclusion("мед");
-                // Add more products to exclude for diabetes as needed
                 break;
 
             case "hypertension":
                 addToExclusion("соль");
-                // Add more products to exclude for hypertension as needed
                 break;
 
             case "none":
-                // Clear existing exclusions for the default case
                 excludedProducts = [];
                 updateExcludedProducts();
                 break;
@@ -255,54 +243,58 @@ function convis(){
     var menus = {
         "Diet": {
             "breakfast": [
-                { name: "Каша с фруктами", composition: "сезон" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Творожные сырники", composition: "Творог, яичный белок, подсластитель" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Ленивая овсянка", composition: "Овсяные хлопья, йогурт, банан, мед", protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Овсяноблин", composition: "Овсяные хлопья, молоко, яйцо, начинка" , protein: 20, fat: 15, carbohydrates: 3, protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Тосты с авокадо и яйцом", composition: " хлеб из цельного зерна, авокадо, яйцо" , protein: 15, fat: 15, carbohydrates: 25},
+                { name: "Чиа-пудинг с ягодами", composition: "чиа-семена, молоко миндальное, ягоды" , protein: 10, fat: 5, carbohydrates: 20},
+                { name: "Греческий салат с творогом", composition: "творог, огурцы, помидоры, маслины, оливковое масло", protein: 15, fat: 25, carbohydrates: 15 },
+                { name: "Коктейль с бананом и орехами", composition: "банан, миндальное молоко, грецкие орехи", protein: 12, fat: 5, carbohydrates: 30 },
+                { name: "Ягодный смузи с овсянкой", composition: "малина, черника, банан, овсянка", protein: 8, fat: 5, carbohydrates: 30 },
+                { name: "Киноа с фруктами и орехами", composition: "Киноа, ананас, манго, миндаль ", protein: 12, fat: 10, carbohydrates: 40 },
+                { name: "Омлет с овощами", composition: "яйца, помидоры, шпинат, перец" , protein: 10, fat: 20, carbohydrates: 10, }
             ],
             "lunch": [
-                { name: "Салат с тунцом", composition: "Тунец, фасоль, помидоры, оливковое масло" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Куриный рулет", composition: "Куриное филе, мандарины, грецкие орехи" , protein: 20, fat: 15, carbohydrates: 3},
+                { name: " Тушеный лосось с картошкой", composition: "Тушеный лосось, Запеченная картошка, брокколи, салат,помидоры" , protein: 25, fat: 15, carbohydrates: 30},
+                { name: " Куриный салат с киноа", composition: "Куриное филе, киноа, грецкие орехи, помидоры, огурцы, лимонный соус" , protein: 30, fat: 10, carbohydrates: 35},
                 { name: "Уха из сибаса", composition: "Сибас, овощи, специи" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Томатный суп", composition: "Морепродукты, овощи, специи" , protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Тушеная индейка с картошкой", composition: "индейка , овощи, картошка, Салат " , protein: 28, fat: 12, carbohydrates: 40}
             ],
             "dinner": [
-                { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь", protein: 20, fat: 15, carbohydrates: 3 },
+                { name: "Печеная куринная грудка с картошкой", composition: "спаржа, куринная грудка, спаржа, розмарин", protein: 25, fat: 10, carbohydrates: 30 },
                 { name: "Курица с картофелем", composition: "Куриное филе, картофель, специи" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Спагетти с чесноком", composition: "Спагетти, чеснок, масло", protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Дорада в духовке", composition: "Дорада, лимон, базилик, масло" , protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Паста с курицей:", composition: "Салат, томатный соус, базилик, паста, куриное филе, чеснок, томаты", protein: 20, fat: 10, carbohydrates: 40 },
+                { name: "Лосось с картошкой", composition: "лосось, лимон, травы, картошка, горошек" , protein: 22, fat: 18, carbohydrates: 25}
             ],
             "snack": [
-                { name: "Фрукты", composition: "Яблоко, банан, груша", protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Орехи", composition: "Грецкие орехи, миндаль" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Зерновые батончики", composition: "Злаки, мед, орехи" , protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Фруктовый йогурт с орехами", composition: "йогурт, мёд, миндаль, грецкий орех", protein: 10, fat: 10, carbohydrates: 20 },
+                { name: "Зеленый смузи с орехами", composition: "Грецкие орехи, шпинат, банан, ягоды" , protein: 8, fat: 10, carbohydrates: 30},
+                { name: " Овощной стебель с хумусом", composition: "морковь, хумус, огурцы, паприка" , protein: 6, fat: 8, carbohydrates: 15},
+                { name: "Греческий йогурт с ягодами", composition: "йогурт, ягоды, грецкие орехи" , protein: 15, fat: 19, carbohydrates: 20}
             ]
         },
         "Regular": {
             "breakfast": [
-                { name: "Омлет", composition: "Яйца, молоко, соль, перец", protein: 20, fat: 15, carbohydrates: 3  },
+                { name: "Омлет с овощами и авокадо", composition: "Яйца, полбанана, соль, перец, шпинат, помидоры, шпинатом", protein: 20, fat: 15, carbohydrates: 30  },
                 { name: "Гречневая каша", composition: "Гречка, вода, соль" , protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Тосты", composition: "Хлеб, масло", protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Фрукты", composition: "Яблоко, банан, апельсин" , protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Греческий йогурт с орехами", composition: "йогурт, мед, грецкие орехи", protein: 15, fat: 15, carbohydrates: 25 },
+                { name: "Хлебцы с лососем и творожным сыром", composition: "хлебцы, творожный сыр, лосось", protein: 25, fat: 20, carbohydrates: 20 }
             ],
             "lunch": [
-                { name: "Салат", composition: "Помидор, огурец, салат, оливковое масло" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Паста", composition: "Макароны, томатный соус, сыр" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Сэндвич", composition: "Хлеб, ветчина, сыр, майонез" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Суп", composition: "Куриный бульон, лапша, овощи" , protein: 20, fat: 15, carbohydrates: 3}
+                { name: "Куриный рисовый бургер", composition: "Куриное филе, пшеничная булочка, салат, томаты, лук, горчичный соус", protein: 30, fat: 10, carbohydrates: 40 },
+                { name: "Тающий лосось с картошкой и шпинатом", composition: "Филе лосося, картошка, шпинат", protein: 25, fat: 15, carbohydrates: 30 },
+                { name: "Тушеная курица с овощами", composition: "Куриное филе, киноа", protein: 25, fat: 8, carbohydrates: 35 },
+                { name: "Вегетарианская тачос", composition: "Тортильи из цельного зерна, черные бобы, кукуруза, помидоры, лук, авокадо, гречка", protein: 20, fat: 10, carbohydrates: 40 },
+                { name: "Паста с тунцом и овощами", composition: "Макароны, тунец, брокколи, помидоры, чеснок", protein: 22, fat: 12, carbohydrates: 35 }
             ],
             "dinner": [
-                { name: "Рыба с овощами", composition: "Лосось, брокколи, морковь" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Курица с картофелем", composition: "Куринное филе, картофель, специи" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Пицца", composition: "Тесто, томатный соус, сыр, грибы, колбаса", protein: 20, fat: 15, carbohydrates: 3 },
-                { name: "Суши", composition: "Рис, лосось, нори, огурец, соевый соус", protein: 20, fat: 15, carbohydrates: 3 }
+                { name: "Цыпленок с киноа и овощами", composition: "Куриное филе, киноа, брокколи,  цветная капуста,  оливковое масло" , protein: 30, fat: 10, carbohydrates: 35},
+                { name: "Лосось с картошкой и зеленым горошком", composition: "Филе лосося, картофель, розмарин, зеленый горошек" , protein: 20, fat: 15, carbohydrates: 35},
+                { name: "Тофу с карри и кускусом", composition: "Тофу, кускус, спаржа, чеснок, масло", protein: 20, fat: 8, carbohydrates: 40 },
+                { name: "Курица с картошкой", composition: "Куриное бедро, картошка, зеленый горошек, масло, корица", protein: 28, fat: 10, carbohydrates: 35 }
             ],
             "snack": [
-                { name: "Фрукты", composition: "Яблоко, банан, груша" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Орехи", composition: "Грецкие орехи, миндаль" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Йогурт", composition: "Натуральный йогурт, мед, орехи" , protein: 20, fat: 15, carbohydrates: 3},
-                { name: "Зерновые батончики", composition: "Злаки, мед, орехи", protein: 20, fat: 15, carbohydrates: 3 }
+                { name: "Фруктовый йогурт с орехами", composition: "йогурт, мёд, миндаль, грецкий орех", protein: 10, fat: 10, carbohydrates: 20 },
+                { name: "Зеленый смузи с орехами", composition: "Грецкие орехи, шпинат, банан, ягоды" , protein: 8, fat: 10, carbohydrates: 30},
+                { name: " Овощной стебель с хумусом", composition: "морковь, хумус, огурцы, паприка" , protein: 6, fat: 8, carbohydrates: 15},
+                { name: "Греческий йогурт с ягодами и орехами", composition: "йогурт, ягоды, грецкие орехи" , protein: 15, fat: 19, carbohydrates: 20}
             ]
         }
     };
@@ -512,8 +504,11 @@ for (var j = 0; j < 3; j++) {
 
         // Вывод общего количества белков, жиров и углеводов для каждого дня
         var totalsBlock = document.createElement("p");
-        totalsBlock.innerHTML = "<strong>Общее количество:</strong> Белки: " + dailyProtein + "г, Жиры: " + dailyFat + "г, Углеводы: " + dailyCarbohydrates + "г";
-        dayMenu.appendChild(totalsBlock);
+totalsBlock.innerHTML = "<strong>Общее количество:</strong> <br>Белки: " + dailyProtein + "г, Жиры: " + dailyFat + "г, Углеводы: " + dailyCarbohydrates + "г";
+
+totalsBlock.style.textAlign = "center";
+
+dayMenu.appendChild(totalsBlock);
 
         row.appendChild(dayMenu);
     }
