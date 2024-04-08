@@ -161,11 +161,43 @@
         a {
             text-decoration: #1e7d26;
         }
+
+        nav {
+            background-color: white;
+            border-radius: 45rem;
+            height: 45px;
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+
+        }
+
+        nav>a {
+            color: rgb(5, 171, 46);
+            height: 0.5cm;
+        }
+
+        nav>a:hover {
+            background-color: #1e7d26;
+            color: white;
+            border-radius: 45rem;
+        }
     </style>
 
 </head>
 
 <body>
+    <header>
+        <nav>
+            <button id="btnCon" onclick="convis()">Получить</button>
+            <a href="#">Главное Меню</a>
+            <a href="#">Сохраненое меню</a>
+            <a href="#">О нас</a>
+        </nav>
+    </header>
     <div class="container" id="container">
         <button class="close" id="close" style="left:70%;position: relative;" onclick="conClose()">❌</button>
         <div class="dropdown-menu" id="dropdownMenu">
@@ -204,7 +236,7 @@
         <div id="excludedProducts" style="position:sticky;"></div>
     </div>
 
-    <button id="btnCon" onclick="convis()">Получить</button>
+
 
     <div class="composition-container" id="compositionContainer">
         <h2>Состав блюда</h2>
@@ -291,57 +323,57 @@
         }
         // не робит вроде 
         function searchProduct() {
-    var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
+            var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
 
-    // Добавляем продукт в исключения
-    addToExclusion(searchTerm);
+            // Добавляем продукт в исключения
+            addToExclusion(searchTerm);
 
-    // Преобразуем обновленный массив исключенных продуктов в JSON
-    var excludedProductsJSON = JSON.stringify(excludedProducts);
+            // Преобразуем обновленный массив исключенных продуктов в JSON
+            var excludedProductsJSON = JSON.stringify(excludedProducts);
 
-    $.ajax({
-        url: 'server.php',
-        type: 'POST',
-        data: {
-            searchTerm: searchTerm,
-            excludedProducts: excludedProductsJSON // Передача обновленных исключенных продуктов на сервер
-        },
-        dataType: 'json',
-        success: function (response) {
-            handleSearchResponse(response);
-        },
-        error: function (xhr, status, error) {
-            console.error('Произошла ошибка при поиске продукта:', error);
+            $.ajax({
+                url: 'server.php',
+                type: 'POST',
+                data: {
+                    searchTerm: searchTerm,
+                    excludedProducts: excludedProductsJSON // Передача обновленных исключенных продуктов на сервер
+                },
+                dataType: 'json',
+                success: function (response) {
+                    handleSearchResponse(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Произошла ошибка при поиске продукта:', error);
+                }
+            });
         }
-    });
-}
 
 
-function generateMenus() {
-    var mealCount = document.getElementById("mealCount").value;
-    var choseMenu = document.getElementById("choseMenu").value;
-    var excludeWords = ['йогурт', 'сливы', 'яблоки', 'бананы', 'бананы', 'бананы']; // сюда передать искл
+        function generateMenus() {
+            var mealCount = document.getElementById("mealCount").value;
+            var choseMenu = document.getElementById("choseMenu").value;
+            var excludeWords = ['йогурт', 'сливы', 'яблоки', 'бананы', 'бананы', 'бананы']; // сюда передать искл
 
-    var excludedProductsJSON = JSON.stringify(excludedProducts); // Преобразование массива исключенных продуктов в JSON
+            var excludedProductsJSON = JSON.stringify(excludedProducts); // Преобразование массива исключенных продуктов в JSON
 
-    $.ajax({
-        url: 'server.php',
-        type: 'POST',
-        data: {
-            mealCount: mealCount,
-            choseMenu: choseMenu,
-            excludedProducts: excludedProductsJSON // Передача исключенных продуктов на сервер
-        },
-        dataType: 'json',
-        success: function (response) {
-            saveMenuToLocalStorage(response);
-            handleResponse(response);
-        },
-        error: function (xhr, status, error) {
-            console.error('Произошла ошибка при получении данных:', error);
+            $.ajax({
+                url: 'server.php',
+                type: 'POST',
+                data: {
+                    mealCount: mealCount,
+                    choseMenu: choseMenu,
+                    excludedProducts: excludedProductsJSON // Передача исключенных продуктов на сервер
+                },
+                dataType: 'json',
+                success: function (response) {
+                    saveMenuToLocalStorage(response);
+                    handleResponse(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Произошла ошибка при получении данных:', error);
+                }
+            });
         }
-    });
-}
 
 
         function handleResponse(response) {
