@@ -2,9 +2,10 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-if (isset($_POST['mealCount']) && isset($_POST['choseMenu'])) {
+if (isset($_POST['mealCount']) && isset($_POST['choseMenu']) && isset($_POST['excludeWords'])) {
     $mealCount = $_POST['mealCount'];
     $choseMenu = $_POST['choseMenu'];
+    $excludeWords = $_POST['excludeWords'];
 
     require_once "db.php";
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,6 +19,10 @@ if (isset($_POST['mealCount']) && isset($_POST['choseMenu'])) {
         $sql .= " AND (meal_type = 'breakfast' OR meal_type = 'lunch' OR meal_type = 'dinner')";
     } elseif ($mealCount == 4) {
         $sql .= " AND (meal_type = 'breakfast' OR meal_type = 'lunch' OR meal_type = 'dinner' OR meal_type = 'snack')";
+    }
+    //тут для каждого слова из массива с искл
+    foreach ($excludeWords as $word) {
+        $sql .= " AND composition NOT LIKE '%" . $conn->real_escape_string($word) . "%'";
     }
 
     $result = $conn->query($sql);
@@ -41,8 +46,8 @@ if (isset($_POST['mealCount']) && isset($_POST['choseMenu'])) {
         echo json_encode(array('message' => 'Нет подходящих вариантов'));
     }
 
-
     $conn->close();
 } else {
     echo json_encode(array('message' => 'Переменные получаемые не определены'));
 }
+?>

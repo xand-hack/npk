@@ -184,8 +184,8 @@
 
         <label for="choseMenu">Выберите меню</label>
         <select id="choseMenu">
-            <option value="Diet">Деетическое</option>
             <option value="Regular">Обычное</option>
+            <option value="Diet">Деетическое</option>
         </select>
 
         <label for="selectDisease">Выберите болезнь: </label>
@@ -352,22 +352,34 @@
 
 
         function generateMenus() {
-            var mealCount = document.getElementById("mealCount").value;
-            var choseMenu = document.getElementById("choseMenu").value;
-            $.ajax({
-                url: 'server.php',
-                type: 'POST',
-                data: {
-                    mealCount: mealCount,
-                    choseMenu: choseMenu
-                },
-                dataType: 'json',
-                success: handleResponse,
-                error: function (xhr, status, error) {
-                    console.error('Произошла ошибка при получении данных:', error);
-                }
-            });
+    var mealCount = document.getElementById("mealCount").value;
+    var choseMenu = document.getElementById("choseMenu").value;
+    var excludeWords = ['йогурт', 'сливы', 'яблоки', 'бананы', 'бананы', 'бананы']; // сюда передать искл
+
+
+    var excludedProductsJSON = JSON.stringify(excludedProducts);
+
+    $.ajax({
+        url: 'server.php',
+        type: 'POST',
+        data: {
+            mealCount: mealCount,
+            choseMenu: choseMenu,
+            excludeWords: excludeWords,
+            excludedProducts: excludedProductsJSON 
+        },
+        dataType: 'json',
+        success: function (response) {
+            saveMenuToLocalStorage(response);
+            handleResponse(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Произошла ошибка при получении данных:', error);
         }
+    });
+}
+
+
 
         function handleResponse(response) {
 
@@ -394,15 +406,15 @@
 
                     menuContainer.append(dayDiv);
                 }
-            });//пошла возня ам ам ам ам ам ыц ыц цы цы цы
-            // ам ам ам
+            });
+            //пошла возня ам ам ам ам ам ыц ыц цы цы цы
+
 
         }
         function showComposition(mealName) {
             var compositionContainer = document.getElementById("compositionContainer");
             var compositionText = document.getElementById("compositionText");
 
-            console.log(mealName)
             // compositionText.innerHTML = "Состав: " + composition + '<br>  Белки: ' + protein + 'г, Жиры: ' + fat + 'г, Углеводы: ' + carbohydrates + 'г';
             // compositionContainer.style.display = "block";
         }
@@ -411,6 +423,21 @@
             var compositionContainer = document.getElementById("compositionContainer");
             compositionContainer.style.display = "none";
         }
+        function saveMenuToLocalStorage(menuData) {
+    localStorage.setItem('savedMenu', JSON.stringify(menuData));
+}
+function loadSavedMenuFromLocalStorage() {
+    var savedMenu = localStorage.getItem('savedMenu');
+    if (savedMenu) {
+        handleResponse(JSON.parse(savedMenu));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadSavedMenuFromLocalStorage();
+});
+
+
 
     </script>
 </body>
