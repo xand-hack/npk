@@ -2,10 +2,11 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-if (isset($_POST['mealCount']) && isset($_POST['choseMenu']) && isset($_POST['excludeWords'])) {
+if (isset($_POST['mealCount']) && isset($_POST['choseMenu']) && isset($_POST['excludedProducts'])) {
     $mealCount = $_POST['mealCount'];
     $choseMenu = $_POST['choseMenu'];
-    $excludeWords = $_POST['excludeWords'];
+    $excludeWords1 = $_POST['excludedProducts'];
+    $excludeWords = json_decode($excludeWords1, true);
 
     require_once "db.php";
     $conn = new mysqli($servername, $username, $password, $dbname);

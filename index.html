@@ -291,96 +291,57 @@
         }
         // не робит вроде 
         function searchProduct() {
-            var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
+    var searchTerm = document.getElementById("searchProduct").value.trim().toLowerCase();
 
-            // Проверка на пустое значение
-            if (searchTerm === "") {
-                alert("Введите название продукта для поиска.");
-                return;
-            }
+    // Добавляем продукт в исключения
+    addToExclusion(searchTerm);
 
-            // Добавляем продукт в исключения
-            addToExclusion(searchTerm);
+    // Преобразуем обновленный массив исключенных продуктов в JSON
+    var excludedProductsJSON = JSON.stringify(excludedProducts);
 
-            var foundProducts = [];
-            for (let i = 0; i < foundProducts.length; i++) {
-
-            }
-
-            // Собираем блюда, содержащие искомый продукт
-            var affectedDishes = [];
-            // for (var menuType in menus) {
-            //     for (var mealType in menus[menuType]) {
-            //         menus[menuType][mealType].forEach(function (meal) {
-            //             if (meal.composition.toLowerCase().includes(searchTerm) && foundProducts.indexOf(meal.name) === -1) {
-            //                 foundProducts.push(meal.name);
-            //                 affectedDishes.push({
-            //                     menuType: menuType,
-            //                     mealType: mealType,
-            //                     meal: meal
-            //                 });
-            //             }
-            //         });
-            //     }
-            // }
-
-            if (foundProducts.length > 0) {
-                // Заменяем все затронутые блюда случайными альтернативами
-                affectedDishes.forEach(function (affectedDish) {
-                    var availableMeals = menus[affectedDish.menuType][affectedDish.mealType].filter(function (meal) {
-                        return meal.name !== affectedDish.meal.name;
-                    });
-
-                    // Проверяем, что есть более 2-х блюд для замены
-                    if (availableMeals.length < 3) {
-                        alert("Невозможно добавить блюдо в исключение, так как останется меньше 2 вариантов.");
-                        return;
-                    }
-
-                    var alternativeDish = getRandomMeal(availableMeals, {});
-                    var index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
-
-                    while (index !== -1) {
-                        menus[affectedDish.menuType][affectedDish.mealType].splice(index, 1, alternativeDish);
-                        index = menus[affectedDish.menuType][affectedDish.mealType].indexOf(affectedDish.meal);
-                    }
-                });
-
-                alert("Блюда с продуктом '" + searchTerm + "' были заменены. Новые блюда сгенерированы.");
-                generateMenus(); // Перегенерируем меню для отображения обновленных блюд
-            }
-            else {
-                alert("Продукт не найден в текущем меню. Он был добавлен в исключения.");
-            }
+    $.ajax({
+        url: 'server.php',
+        type: 'POST',
+        data: {
+            searchTerm: searchTerm,
+            excludedProducts: excludedProductsJSON // Передача обновленных исключенных продуктов на сервер
+        },
+        dataType: 'json',
+        success: function (response) {
+            handleSearchResponse(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Произошла ошибка при поиске продукта:', error);
         }
+    });
+}
 
-        function generateMenus() {
-            var mealCount = document.getElementById("mealCount").value;
-            var choseMenu = document.getElementById("choseMenu").value;
-            var excludeWords = ['йогурт', 'сливы', 'яблоки', 'бананы', 'бананы', 'бананы']; // сюда передать искл
 
-            var excludedProductsJSON = JSON.stringify(excludedProducts);
+function generateMenus() {
+    var mealCount = document.getElementById("mealCount").value;
+    var choseMenu = document.getElementById("choseMenu").value;
+    var excludeWords = ['йогурт', 'сливы', 'яблоки', 'бананы', 'бананы', 'бананы']; // сюда передать искл
 
-            $.ajax({
-                url: 'server.php',
-                type: 'POST',
-                data: {
-                    mealCount: mealCount,
-                    choseMenu: choseMenu,
-                    excludeWords: excludeWords,
-                    excludedProducts: excludedProductsJSON
-                },
-                dataType: 'json',
-                success: function (response) {
-                    saveMenuToLocalStorage(response);
-                    handleResponse(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error('Произошла ошибка при получении данных:', error);
-                }
-            });
+    var excludedProductsJSON = JSON.stringify(excludedProducts); // Преобразование массива исключенных продуктов в JSON
+
+    $.ajax({
+        url: 'server.php',
+        type: 'POST',
+        data: {
+            mealCount: mealCount,
+            choseMenu: choseMenu,
+            excludedProducts: excludedProductsJSON // Передача исключенных продуктов на сервер
+        },
+        dataType: 'json',
+        success: function (response) {
+            saveMenuToLocalStorage(response);
+            handleResponse(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Произошла ошибка при получении данных:', error);
         }
-
+    });
+}
 
 
         function handleResponse(response) {
